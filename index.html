@@ -6,17 +6,27 @@
   <title>Happy 4 Months, Amore!</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    /* All styles in one file for simplicity */
+    /* All styles in one file with light blue color scheme */
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
     
+    :root {
+      --primary-color: #6ab7ff;
+      --secondary-color: #88c8ff;
+      --accent-color: #3d91e6;
+      --light-text: #fff;
+      --dark-text: #333;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #f8cdda 0%, #f88ca4 100%);
-      color: #333;
+      background: linear-gradient(135deg, #addcff 0%, #88c8ff 100%);
+      color: var(--dark-text);
       min-height: 100vh;
       overflow-x: hidden;
       padding-bottom: 40px;
@@ -34,14 +44,14 @@
     }
     
     h1 {
-      color: #fff;
+      color: var(--light-text);
       font-size: 36px;
       margin-bottom: 15px;
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
     }
     
     .subtitle {
-      color: #fff;
+      color: var(--light-text);
       font-size: 18px;
     }
     
@@ -50,13 +60,13 @@
       background: rgba(255, 255, 255, 0.15);
       border-radius: 15px;
       padding: 25px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow);
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);
     }
     
     h2 {
-      color: #fff;
+      color: var(--light-text);
       font-size: 28px;
       margin-bottom: 20px;
       position: relative;
@@ -76,7 +86,28 @@
       line-height: 1.6;
     }
     
-    /* Gallery styles */
+    /* Interactive Button Styles */
+    .btn {
+      background: var(--light-text);
+      color: var(--accent-color);
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: var(--shadow);
+      margin: 10px;
+    }
+    
+    .btn:hover {
+      background: var(--accent-color);
+      color: var(--light-text);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+    
+    /* Gallery styles with interactive features */
     .gallery {
       display: flex;
       flex-wrap: wrap;
@@ -85,39 +116,191 @@
       margin-top: 20px;
     }
     
-    .gallery img {
-      width: 100%;
-      max-width: 200px;
+    .photo-card {
+      background: var(--light-text);
       border-radius: 10px;
-      border: 5px solid white;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      width: 220px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
+    
+    .photo-card:hover {
+      transform: translateY(-10px) rotate(3deg);
+    }
+    
+    .photo-container {
+      height: 180px;
+      overflow: hidden;
+    }
+    
+    .photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .photo-card:hover .photo {
+      transform: scale(1.1);
+    }
+    
+    .photo-caption {
+      padding: 15px;
+      font-family: 'Dancing Script', cursive;
+      font-size: 18px;
+      color: var(--accent-color);
+    }
+    
+    /* Interactive fullscreen modal for images */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .modal.active {
+      display: flex;
+      opacity: 1;
+    }
+    
+    .modal-content {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+    
+    .close-modal {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
       transition: transform 0.3s ease;
     }
     
-    .gallery img:hover {
-      transform: scale(1.05);
+    .close-modal:hover {
+      transform: scale(1.2);
     }
     
-    /* Letter styles */
-    .letter {
+    /* Interactive Letter styles */
+    .letter-container {
+      perspective: 1000px;
+      margin: 20px auto;
+      max-width: 320px;
+    }
+    
+    .envelope {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      background: #f0f8ff;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      margin: 0 auto;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    
+    .envelope:hover {
+      transform: translateY(-5px);
+    }
+    
+    .envelope-front {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #d6eaff 0%, #bedeff 100%);
+      border-radius: 10px;
+      z-index: 3;
+      transform-origin: top;
+      transition: transform 0.8s ease-in-out;
+    }
+    
+    .envelope-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #bedeff;
+      border-radius: 10px;
+      z-index: 1;
+    }
+    
+    .letter-paper {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      background: white;
+      border-radius: 5px;
+      z-index: 2;
+      transform: translateY(0);
+      transition: transform 0.5s ease 0.3s;
+    }
+    
+    .envelope.open .envelope-front {
+      transform: rotateX(180deg);
+    }
+    
+    .envelope.open .letter-paper {
+      transform: translateY(-80px);
+    }
+    
+    .envelope-message {
+      margin-top: 10px;
+      color: white;
+      font-style: italic;
+      font-size: 14px;
+    }
+    
+    .letter-content {
+      display: none;
       background: white;
       padding: 25px;
       border-radius: 10px;
       max-width: 600px;
       margin: 0 auto;
       text-align: left;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow);
+      position: relative;
+      top: -30px;
+      opacity: 0;
+      transition: opacity 0.5s ease, top 0.5s ease;
     }
     
-    .letter h3 {
-      color: #e75480;
+    .letter-content.visible {
+      display: block;
+      opacity: 1;
+      top: 0;
+    }
+    
+    .letter-content h3 {
+      color: var(--accent-color);
       font-family: 'Dancing Script', cursive;
       font-size: 28px;
       margin-bottom: 15px;
       text-align: center;
     }
     
-    .letter p {
+    .letter-content p {
       font-family: 'Dancing Script', cursive;
       font-size: 20px;
       margin-bottom: 15px;
@@ -127,11 +310,11 @@
       text-align: right;
       font-family: 'Dancing Script', cursive;
       font-size: 24px;
-      color: #e75480;
+      color: var(--accent-color);
       margin-top: 20px;
     }
     
-    /* Timeline styles */
+    /* Interactive Timeline styles */
     .timeline {
       position: relative;
       max-width: 600px;
@@ -153,6 +336,14 @@
       margin-bottom: 30px;
       padding-left: 50px;
       text-align: left;
+      opacity: 0.7;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .event:hover, .event.active {
+      opacity: 1;
+      transform: translateX(5px);
     }
     
     .event-marker {
@@ -163,29 +354,62 @@
       height: 20px;
       border-radius: 50%;
       background-color: white;
-      border: 3px solid #ff4f81;
+      border: 3px solid var(--accent-color);
       z-index: 1;
+      transition: all 0.3s ease;
+    }
+    
+    .event:hover .event-marker, .event.active .event-marker {
+      background-color: var(--accent-color);
+      transform: scale(1.2);
     }
     
     .event-content {
-      background-color: rgba(255, 255, 255, 0.85);
+      background-color: var(--card-bg);
       padding: 15px;
       border-radius: 8px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
     
     .event-content h3 {
-      color: #e75480;
+      color: var(--accent-color);
       margin-bottom: 5px;
       font-size: 18px;
     }
     
+    .timeline-image {
+      display: block;
+      width: 100%;
+      height: 200px;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 0 auto 30px;
+      box-shadow: var(--shadow);
+    }
+    
+    .timeline-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 0.3s ease;
+    }
+    
     /* Love Message styles */
+    .message-box {
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 600px;
+      position: relative;
+      backdrop-filter: blur(5px);
+      box-shadow: var(--shadow);
+    }
+    
     .love-message {
       font-family: 'Dancing Script', cursive;
       font-size: 24px;
       color: white;
-      margin: 30px 0 15px;
       padding: 15px;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
       position: relative;
@@ -212,7 +436,58 @@
     .message-date {
       font-size: 14px;
       color: rgba(255, 255, 255, 0.7);
-      margin-top: 30px;
+      margin-top: 10px;
+    }
+    
+    .new-message-btn {
+      margin-top: 15px;
+    }
+    
+    /* Float animation for elements */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .float {
+      animation: float 5s ease-in-out infinite;
+    }
+    
+    /* Heart animations */
+    .heart-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+    
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.7);
+      animation: heartFloat 15s linear infinite;
+    }
+    
+    @keyframes heartFloat {
+      0% {
+        transform: translateY(100vh) scale(0.7);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.7;
+      }
+      90% {
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(-50px) scale(1.1);
+        opacity: 0;
+      }
     }
     
     footer {
@@ -222,7 +497,7 @@
     }
     
     .heart-icon {
-      color: #ff4f81;
+      color: #ff6b95;
       display: inline-block;
       animation: pulse 1.5s infinite;
     }
@@ -240,19 +515,16 @@
         align-items: center;
       }
       
-      .gallery img {
-        max-width: 80%;
+      .photo-card {
+        width: 80%;
+        max-width: 280px;
       }
       
-      .letter {
-        padding: 20px;
-      }
-      
-      .letter h3 {
+      .letter-content h3 {
         font-size: 24px;
       }
       
-      .letter p {
+      .letter-content p {
         font-size: 18px;
       }
       
@@ -263,31 +535,64 @@
   </style>
 </head>
 <body>
+  <!-- Heart Floating Background -->
+  <div class="heart-container" id="heart-container"></div>
+
   <div class="container">
     <header>
-      <h1>Happy 4 Months, MiBubis!</h1>
+      <h1 class="float">Happy 4 Months, MiBubis!</h1>
       <p class="subtitle">Every moment with you feels like a little piece of forever.</p>
     </header>
 
     <section>
       <h2>Our Moments</h2>
       <div class="gallery">
-        <img src="photo1.jpg" alt="Us together" onerror="this.src='https://via.placeholder.com/200x200?text=Our+Photo'">
-        <img src="photo2.jpg" alt="Laughing together" onerror="this.src='https://via.placeholder.com/200x200?text=Our+Photo'">
-        <img src="photo3.jpg" alt="A memory" onerror="this.src='https://via.placeholder.com/200x200?text=Our+Photo'">
+        <div class="photo-card" onclick="openModal('images/photo1.jpg', 'My favorite smile')">
+          <div class="photo-container">
+            <img src="images/photo1.jpg" alt="Us together" class="photo" onerror="this.src='https://via.placeholder.com/300x200/bedeff/ffffff?text=Our+Photo'">
+          </div>
+          <p class="photo-caption">My favorite smile</p>
+        </div>
+        <div class="photo-card" onclick="openModal('images/photo2.jpg', 'Laughing with you')">
+          <div class="photo-container">
+            <img src="images/photo2.jpg" alt="Laughing together" class="photo" onerror="this.src='https://via.placeholder.com/300x200/bedeff/ffffff?text=Our+Photo'">
+          </div>
+          <p class="photo-caption">Laughing with you</p>
+        </div>
+        <div class="photo-card" onclick="openModal('images/photo3.jpg', 'Our adventure')">
+          <div class="photo-container">
+            <img src="images/photo3.jpg" alt="A memory" class="photo" onerror="this.src='https://via.placeholder.com/300x200/bedeff/ffffff?text=Our+Photo'">
+          </div>
+          <p class="photo-caption">Our adventure</p>
+        </div>
+      </div>
+      
+      <!-- Photo Modal -->
+      <div class="modal" id="photo-modal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modal-img">
       </div>
     </section>
 
     <section>
       <h2>My Love Letter</h2>
-      <div class="letter">
+      <div class="letter-container">
+        <div class="envelope" id="envelope" onclick="openEnvelope()">
+          <div class="envelope-front"></div>
+          <div class="envelope-back"></div>
+          <div class="letter-paper"></div>
+        </div>
+        <p class="envelope-message">(Click to open)</p>
+      </div>
+      
+      <div class="letter-content" id="letter-content">
         <h3>Alla Mia Persona Preferita</h3>
         <p>
           Vorrei ringraziare non solo Dio, ma anche Gay Jesus per averti fatto fare swipe su di me. Dal nostro primo appuntamento di tre giorni fino adesso, che praticamente abbiamo un gatto insieme:
           Sei stata la mia migliore amica, il mio conforto più grande, e tutto il mio cuore ❤️ Amo la vita con te.
         </p>
         <p>
-          Amo ridere con te fino a farci male alla pancia. Amo che possiamo parlare di tutto e di niente per ore. Sei proprio "codificata come gli Egizi credevano".
+          Amo ridere con te fino a farci male alla pancia. Amo che possiamo parlare di tutto e di niente per ore. Sei proprio "The Egyptians believed" coded.
           Con te mi sento al sicuro, visto, e più amato di quanto lo sia mai stato prima.
         </p>
         <p>
@@ -299,36 +604,39 @@
 
     <section>
       <h2>Our Story So Far</h2>
+      <div class="timeline-image">
+        <img id="timeline-img" src="images/event1.jpg" alt="Our Story" onerror="this.src='https://via.placeholder.com/600x300/bedeff/ffffff?text=Our+Journey'">
+      </div>
       <div class="timeline">
-        <div class="event">
+        <div class="event active" onclick="changeTimelineImage('images/event1.jpg')">
           <div class="event-marker"></div>
           <div class="event-content">
             <h3>Day 1–3</h3>
             <p>Our "first date" turned into 72 hours of nonstop magic</p>
           </div>
         </div>
-        <div class="event">
+        <div class="event" onclick="changeTimelineImage('images/event2.jpg')">
           <div class="event-marker"></div>
           <div class="event-content">
             <h3>Month 1</h3>
             <p>Realizing I found my favorite human</p>
           </div>
         </div>
-        <div class="event">
+        <div class="event" onclick="changeTimelineImage('images/event3.jpg')">
           <div class="event-marker"></div>
           <div class="event-content">
             <h3>Month 2</h3>
             <p>Nonstop laughter, deep talks, inside jokes</p>
           </div>
         </div>
-        <div class="event">
+        <div class="event" onclick="changeTimelineImage('images/event4.jpg')">
           <div class="event-marker"></div>
           <div class="event-content">
             <h3>Month 3</h3>
             <p>Feeling even more at home in your arms</p>
           </div>
         </div>
-        <div class="event">
+        <div class="event" onclick="changeTimelineImage('images/event5.jpg')">
           <div class="event-marker"></div>
           <div class="event-content">
             <h3>Month 4</h3>
@@ -340,8 +648,11 @@
 
     <section>
       <h2>Your Daily Love Message</h2>
-      <div id="love-message" class="love-message">Loading your special message...</div>
-      <p class="message-date">A new message appears each day</p>
+      <div class="message-box float">
+        <div id="love-message" class="love-message">Loading your special message...</div>
+        <p class="message-date">Today's message, just for you</p>
+      </div>
+      <button class="btn new-message-btn" onclick="getRandomMessage()">Get Another Love Message</button>
     </section>
 
     <footer>
@@ -350,55 +661,208 @@
   </div>
 
   <script>
-    // Simple script for daily love message
+    // Wait for document to load
     document.addEventListener('DOMContentLoaded', function() {
-      const loveMessages = [
-        "You're the first thing I think about when I wake up and the last thing I think about before I fall asleep.",
-        "Every moment with you makes life more beautiful.",
-        "You make my heart smile in ways no one else can.",
-        "In your eyes, I've found my home.",
-        "Your love is the greatest gift I've ever received.",
-        "When I'm with you, I feel like the luckiest person alive.",
-        "You make ordinary moments feel extraordinary.",
-        "I never knew I could love someone the way I love you.",
-        "Your smile brightens even my darkest days.",
-        "Forever won't be long enough to spend with you.",
-        "Being with you feels like coming home.",
-        "Your love gives me strength I never knew I had.",
-        "You're the reason I believe in love.",
-        "I love you more than yesterday, but less than tomorrow.",
-        "Meeting you was fate, becoming your boyfriend was a choice, but falling in love with you was beyond my control.",
-        "You're my favorite notification.",
-        "I'd choose you in a hundred lifetimes, in a hundred worlds, in any version of reality.",
-        "Every second, every minute, every hour spent with you is time well spent.",
-        "You're the missing piece I never knew I needed.",
-        "You make my heart beat in ways I didn't know it could.",
-        "Loving you is as natural as breathing.",
-        "My favorite place in the world is next to you.",
-        "With you, even the smallest moments feel magical.",
-        "You're the best part of my day, every day.",
-        "I didn't know what it meant to truly smile until I met you.",
-        "You make my heart feel like it's dancing.",
-        "Being loved by you is like a dream I never want to wake up from.",
-        "My heart recognized you before my eyes did.",
-        "You're the rhythm to my heart's beat.",
-        "With you, I've found the love I've always dreamed of.",
-        "Your love is the greatest adventure I've ever been on."
-      ];
+      // Initialize floating hearts
+      createFloatingHearts();
       
-      // Get daily message based on date
-      function getDailyMessage() {
-        const today = new Date();
-        const dateString = `${today.getMonth() + 1}${today.getDate()}${today.getFullYear()}`;
-        const dateSum = dateString.split('').reduce((sum, digit) => sum + parseInt(digit, 10), 0);
-        const todayIndex = dateSum % loveMessages.length;
-        return loveMessages[todayIndex];
+      // Set up the daily love message
+      showDailyMessage();
+      
+      // Set first timeline item as active
+      setActiveEvent(document.querySelector('.event'));
+    });
+    
+    // Create floating hearts background
+    function createFloatingHearts() {
+      const container = document.getElementById('heart-container');
+      
+      // Create initial hearts
+      for (let i = 0; i < 15; i++) {
+        createHeart();
       }
       
-      // Display message
+      // Create new hearts periodically
+      setInterval(createHeart, 3000);
+      
+      function createHeart() {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerHTML = '❤️';
+        
+        // Random position and animation duration
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.fontSize = Math.random() * 15 + 10 + 'px';
+        heart.style.opacity = Math.random() * 0.5 + 0.3;
+        heart.style.animationDuration = Math.random() * 10 + 10 + 's';
+        
+        container.appendChild(heart);
+        
+        // Remove heart after animation
+        setTimeout(() => {
+          heart.remove();
+        }, 20000);
+      }
+    }
+    
+    // Photo modal functions
+    function openModal(imgSrc, caption) {
+      const modal = document.getElementById('photo-modal');
+      const modalImg = document.getElementById('modal-img');
+      
+      // Set the image source
+      modalImg.src = imgSrc;
+      modalImg.alt = caption;
+      
+      // Handle image loading error
+      modalImg.onerror = function() {
+        this.src = 'https://via.placeholder.com/800x600/bedeff/ffffff?text=' + caption;
+      };
+      
+      // Show the modal with animation
+      modal.style.display = 'flex';
+      setTimeout(() => {
+        modal.classList.add('active');
+      }, 10);
+    }
+    
+    function closeModal() {
+      const modal = document.getElementById('photo-modal');
+      modal.classList.remove('active');
+      
+      // Hide after transition
+      setTimeout(() => {
+        modal.style.display = 'none';
+      }, 300);
+    }
+    
+    // Close modal when clicking outside the image
+    window.addEventListener('click', function(event) {
+      const modal = document.getElementById('photo-modal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+    
+    // Interactive envelope functions
+    function openEnvelope() {
+      const envelope = document.getElementById('envelope');
+      const letterContent = document.getElementById('letter-content');
+      
+      envelope.classList.add('open');
+      
+      // Show the letter content after envelope animation
+      setTimeout(() => {
+        letterContent.classList.add('visible');
+      }, 800);
+    }
+    
+    // Timeline functions
+    function changeTimelineImage(imgSrc) {
+      const timelineImg = document.getElementById('timeline-img');
+      const events = document.querySelectorAll('.event');
+      
+      // Find the event with matching image
+      events.forEach(event => {
+        if (event.getAttribute('onclick').includes(imgSrc)) {
+          setActiveEvent(event);
+        }
+      });
+      
+      // Change image with fade effect
+      timelineImg.style.opacity = '0';
+      
+      setTimeout(() => {
+        timelineImg.src = imgSrc;
+        timelineImg.style.opacity = '1';
+        
+        // Handle image loading error
+        timelineImg.onerror = function() {
+          this.src = 'https://via.placeholder.com/600x300/bedeff/ffffff?text=Our+Journey';
+        };
+      }, 300);
+    }
+    
+    function setActiveEvent(event) {
+      // Remove active class from all events
+      document.querySelectorAll('.event').forEach(e => {
+        e.classList.remove('active');
+      });
+      
+      // Add active class to selected event
+      event.classList.add('active');
+    }
+    
+    // Love message functions
+    const loveMessages = [
+      "You're the first thing I think about when I wake up and the last thing I think about before I fall asleep.",
+      "Every moment with you makes life more beautiful.",
+      "You make my heart smile in ways no one else can.",
+      "In your eyes, I've found my home.",
+      "Your love is the greatest gift I've ever received.",
+      "When I'm with you, I feel like the luckiest person alive.",
+      "You make ordinary moments feel extraordinary.",
+      "I never knew I could love someone the way I love you.",
+      "Your smile brightens even my darkest days.",
+      "Forever won't be long enough to spend with you.",
+      "Being with you feels like coming home.",
+      "Your love gives me strength I never knew I had.",
+      "You're the reason I believe in love.",
+      "I love you more than yesterday, but less than tomorrow.",
+      "Meeting you was fate, becoming your boyfriend was a choice, but falling in love with you was beyond my control.",
+      "You're my favorite notification.",
+      "I'd choose you in a hundred lifetimes, in a hundred worlds, in any version of reality.",
+      "Every second, every minute, every hour spent with you is time well spent.",
+      "You're the missing piece I never knew I needed.",
+      "You make my heart beat in ways I didn't know it could.",
+      "Loving you is as natural as breathing.",
+      "My favorite place in the world is next to you.",
+      "With you, even the smallest moments feel magical.",
+      "You're the best part of my day, every day.",
+      "I didn't know what it meant to truly smile until I met you.",
+      "You make my heart feel like it's dancing.",
+      "Being loved by you is like a dream I never want to wake up from.",
+      "My heart recognized you before my eyes did.",
+      "You're the rhythm to my heart's beat.",
+      "With you, I've found the love I've always dreamed of.",
+      "Your love is the greatest adventure I've ever been on."
+    ];
+    
+    // Get daily message based on date
+    function getDailyMessage() {
+      const today = new Date();
+      const dateString = `${today.getMonth() + 1}${today.getDate()}${today.getFullYear()}`;
+      const dateSum = dateString.split('').reduce((sum, digit) => sum + parseInt(digit, 10), 0);
+      const todayIndex = dateSum % loveMessages.length;
+      return loveMessages[todayIndex];
+    }
+    
+    // Show the daily message
+    function showDailyMessage() {
       const loveMessage = document.getElementById('love-message');
       loveMessage.textContent = getDailyMessage();
-    });
+    }
+    
+    // Get a random message different from today's
+    function getRandomMessage() {
+      const loveMessage = document.getElementById('love-message');
+      const currentMessage = loveMessage.textContent;
+      let newMessage = currentMessage;
+      
+      // Make sure we get a different message
+      while (newMessage === currentMessage) {
+        const randomIndex = Math.floor(Math.random() * loveMessages.length);
+        newMessage = loveMessages[randomIndex];
+      }
+      
+      // Fade out, change, fade in
+      loveMessage.style.opacity = '0';
+      
+      setTimeout(() => {
+        loveMessage.textContent = newMessage;
+        loveMessage.style.opacity = '1';
+      }, 500);
+    }
   </script>
 </body>
 </html>
