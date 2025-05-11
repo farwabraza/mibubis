@@ -1,631 +1,228 @@
-/* Base Styling */
-:root {
-  --primary-color: #ff4f81;
-  --secondary-color: #f88ca4;
-  --background-gradient: linear-gradient(135deg, #f8cdda 0%, #f88ca4 100%);
-  --text-color: #333;
-  --light-text: #fff;
-  --accent-color: #e75480;
-  --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  --card-bg: rgba(255, 255, 255, 0.9);
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  background: var(--background-gradient);
-  color: var(--text-color);
-  overflow-x: hidden;
-  min-height: 100vh;
-  position: relative;
-}
-
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  position: relative;
-  z-index: 2;
-}
-
-/* Typography */
-h1, h2, h3 {
-  font-weight: 600;
-  color: var(--light-text);
-}
-
-.main-title {
-  font-size: 3em;
-  margin-bottom: 15px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(45deg, #ff4f81, #ff8a9d);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  display: inline-block;
-}
-
-.subtitle {
-  font-size: 1.2em;
-  margin-bottom: 30px;
-  color: var(--light-text);
-  font-weight: 300;
-}
-
-section {
-  margin-bottom: 70px;
-}
-
-section h2 {
-  font-size: 2em;
-  margin-bottom: 30px;
-  position: relative;
-  display: inline-block;
-}
-
-section h2::after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(to right, transparent, var(--accent-color), transparent);
-  margin-top: 8px;
-}
-
-/* Floating Hearts Background */
-#hearts-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.floating-heart {
-  position: absolute;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 20px;
-  user-select: none;
-  animation: float 6s linear infinite;
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(100vh) scale(0.7);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.8;
-  }
-  90% {
-    opacity: 0.6;
-  }
-  100% {
-    transform: translateY(-100px) scale(1.2);
-    opacity: 0;
-  }
-}
-
-/* Music Control */
-.music-control {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-#music-toggle {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--light-text);
-  color: var(--primary-color);
-  border: none;
-  box-shadow: var(--shadow);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-#music-toggle:hover {
-  background: var(--primary-color);
-  color: var(--light-text);
-  transform: scale(1.1);
-}
-
-.music-icon {
-  font-size: 1.2em;
-}
-
-.music-label {
-  color: var(--light-text);
-  font-size: 0.9em;
-  opacity: 0.8;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-/* Polaroid Gallery */
-.polaroid-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 25px;
-  margin-top: 30px;
-}
-
-.polaroid {
-  background: var(--light-text);
-  padding: 15px 15px 45px 15px;
-  box-shadow: var(--shadow);
-  border-radius: 3px;
-  transition: all 0.3s ease;
-  max-width: 250px;
-  flex: 1 1 calc(33.33% - 25px);
-  position: relative;
-}
-
-.polaroid:hover {
-  transform: scale(1.05) rotate(0deg) !important;
-  z-index: 3;
-}
-
-.polaroid img {
-  max-width: 100%;
-  border-radius: 2px;
-  filter: saturate(1.1);
-}
-
-.polaroid p {
-  margin-top: 15px;
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.3em;
-  text-align: center;
-  color: var(--text-color);
-}
-
-/* Envelope & Letter */
-.love-letter-section {
-  text-align: center;
-}
-
-.envelope-container {
-  display: inline-block;
-  position: relative;
-}
-
-.envelope {
-  width: 340px;
-  height: 220px;
-  position: relative;
-  margin: 0 auto;
-  perspective: 1000px;
-  cursor: pointer;
-  transition: all 0.5s ease;
-}
-
-.envelope:hover {
-  transform: scale(1.02);
-}
-
-.flap {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, #ffdee9 0%, #ffb0c4 100%);
-  border-radius: 10px;
-  transform-origin: top;
-  transition: transform 0.8s ease-in-out;
-  z-index: 10;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-.letter {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--light-text);
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  font-family: 'Dancing Script', cursive;
-  z-index: 5;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 1s ease 0.3s, transform 1s ease 0.3s;
-  max-height: 100%;
-  overflow-y: auto;
-}
-
-.envelope.open .flap {
-  transform: rotateX(-180deg);
-}
-
-.envelope.open .letter {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.letter h2 {
-  color: var(--accent-color);
-  font-size: 1.8em;
-  margin-bottom: 15px;
-  font-weight: 700;
-}
-
-.letter p {
-  font-size: 1.4em;
-  line-height: 1.6;
-  margin-bottom: 15px;
-}
-
-.signature {
-  text-align: right;
-  font-size: 1.6em;
-  margin-top: 20px;
-  color: var(--accent-color);
-}
-
-.envelope-hint {
-  margin-top: 15px;
-  font-style: italic;
-  color: var(--light-text);
-  font-size: 0.9em;
-}
-
-/* Timeline Section */
-.timeline-container {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-}
-
-.timeline-image-container {
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-  border-radius: 15px;
-  box-shadow: var(--shadow);
-  position: relative;
-}
-
-.timeline-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.timeline-events {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.event {
-  display: flex;
-  background: var(--card-bg);
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-  transition: all 0.3s ease;
-  cursor: pointer;
-}
-
-.event:hover, .event.active {
-  transform: translateX(5px);
-  background: var(--light-text);
-  border-left: 5px solid var(--primary-color);
-}
-
-.event-date {
-  background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
-  color: var(--light-text);
-  padding: 15px;
-  min-width: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-}
-
-.event-content {
-  padding: 15px;
-  flex-grow: 1;
-}
-
-.event-content h3 {
-  margin-bottom: 5px;
-  color: var(--accent-color);
-}
-
-.event-content p {
-  font-size: 0.95em;
-  opacity: 0.9;
-}
-
-/* Quiz Section */
-.quiz-section {
-  text-align: center;
-}
-
-.quiz-container {
-  background: var(--card-bg);
-  border-radius: 15px;
-  padding: 30px;
-  box-shadow: var(--shadow);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.quiz-question p.question {
-  font-size: 1.3em;
-  margin-bottom: 25px;
-}
-
-.options {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.option-btn {
-  background: var(--light-text);
-  border: 2px solid var(--primary-color);
-  color: var(--primary-color);
-  padding: 12px 20px;
-  border-radius: 50px;
-  font-size: 1.1em;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.option-btn:hover {
-  background: var(--primary-color);
-  color: var(--light-text);
-  transform: translateY(-3px);
-}
-
-.quiz-result {
-  text-align: center;
-}
-
-.hearts-explosion {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.hearts-explosion .heart {
-  font-size: 2em;
-  color: var(--primary-color);
-  animation: heartbeat 1s infinite alternate;
-  margin: 0 10px;
-}
-
-.hearts-explosion .heart:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.hearts-explosion .heart:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-@keyframes heartbeat {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.5);
-  }
-}
-
-.quiz-result p {
-  font-size: 1.2em;
-  color: var(--accent-color);
-}
-
-.hidden {
-  display: none;
-}
-
-/* Future Dreams Section */
-.dreams-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-
-.dream-card {
-  background: var(--card-bg);
-  border-radius: 15px;
-  padding: 25px;
-  box-shadow: var(--shadow);
-  flex: 1 1 calc(33.33% - 20px);
-  min-width: 200px;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.dream-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-.dream-icon {
-  font-size: 2.5em;
-  margin-bottom: 15px;
-}
-
-.dream-card h3 {
-  color: var(--accent-color);
-  margin-bottom: 10px;
-}
-
-/* Message Generator */
-.message-generator {
-  text-align: center;
-}
-
-.love-btn {
-  background: var(--light-text);
-  color: var(--primary-color);
-  border: none;
-  padding: 15px 30px;
-  font-size: 1.1em;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: var(--shadow);
-  margin-bottom: 20px;
-}
-
-.love-btn:hover {
-  background: var(--primary-color);
-  color: var(--light-text);
-  transform: translateY(-3px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-.love-message {
-  font-family: 'Dancing Script', cursive;
-  font-size: 1.4em;
-  color: var(--accent-color);
-  margin-top: 20px;
-  min-height: 60px;
-}
-
-/* Footer */
-footer {
-  margin-top: 50px;
-  text-align: center;
-}
-
-.footer-text {
-  color: var(--light-text);
-  font-size: 1em;
-}
-
-.heart-icon {
-  color: var(--primary-color);
-  display: inline-block;
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.3);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .main-title {
-    font-size: 2.2em;
+// Initialization when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  initFloatingHearts();
+  initTimeline();
+  initQuiz();
+  initLoveMessages();
+  initMusic();
+  
+  // Add initial animation classes
+  document.querySelectorAll('.animate__animated').forEach(element => {
+    element.classList.add('animate__animated');
+  });
+});
+
+// Floating Hearts Background
+function initFloatingHearts() {
+  const heartsContainer = document.getElementById('hearts-container');
+  
+  // Create initial hearts
+  for (let i = 0; i < 20; i++) {
+    createHeart();
   }
   
-  .polaroid-gallery {
-    flex-direction: column;
-    align-items: center;
+  // Create a new heart every 2 seconds
+  setInterval(createHeart, 2000);
+  
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('floating-heart');
+    heart.innerHTML = '♥';
+    heart.style.left = `${Math.random() * 100}%`;
+    heart.style.opacity = Math.random() * 0.5 + 0.3;
+    heart.style.fontSize = `${Math.random() * 15 + 10}px`;
+    heart.style.animationDuration = `${Math.random() * 10 + 5}s`;
+    
+    heartsContainer.appendChild(heart);
+    
+    // Remove heart after animation completes
+    setTimeout(() => {
+      heart.remove();
+    }, 15000);
   }
   
-  .polaroid {
-    max-width: 85%;
-  }
-  
-  .envelope {
-    width: 300px;
-    height: 200px;
-  }
-  
-  .timeline-container {
-    gap: 20px;
-  }
-  
-  .timeline-image-container {
-    height: 250px;
-  }
-  
-  .dreams-container {
-    flex-direction: column;
-  }
-  
-  .event-date {
-    min-width: 80px;
-    padding: 10px;
+  // Mouse trail hearts effect – disabled on mobile
+  if (!/Mobi|Android/i.test(navigator.userAgent)) {
+    document.addEventListener("mousemove", function(e) {
+      if (Math.random() > 0.9) { // Only show hearts occasionally for better performance
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = "♥";
+        heart.style.left = (e.pageX - 7.5) + "px";
+        heart.style.top = (e.pageY - 7.5) + "px";
+        heart.style.animation = "fadeOut 2s forwards";
+        heart.style.position = "absolute";
+        heart.style.color = "rgba(255, 79, 129, 0.7)";
+        heart.style.fontSize = `${Math.random() * 10 + 15}px`;
+        heart.style.pointerEvents = "none";
+        document.body.appendChild(heart);
+        
+        setTimeout(() => heart.remove(), 2000);
+      }
+    });
   }
 }
 
-@media (max-width: 480px) {
-  .container {
-    padding: 30px 15px;
-  }
+// Open envelope animation
+function openEnvelope() {
+  document.querySelector('.envelope').classList.add('open');
+}
+
+// Initialize music player
+function initMusic() {
+  const music = document.getElementById('bg-music');
+  const musicToggle = document.getElementById('music-toggle');
+  const musicLabel = document.querySelector('.music-label');
+  let isPlaying = false;
   
-  .main-title {
-    font-size: 1.8em;
-  }
+  musicToggle.addEventListener('click', function() {
+    if (isPlaying) {
+      music.pause();
+      musicLabel.textContent = 'Play Music';
+      musicToggle.classList.remove('playing');
+    } else {
+      music.play().catch(() => {
+        console.log('Audio playback was prevented. User interaction required.');
+      });
+      musicLabel.textContent = 'Pause Music';
+      musicToggle.classList.add('playing');
+    }
+    
+    isPlaying = !isPlaying;
+  });
   
-  .subtitle {
-    font-size: 1em;
-  }
+  // Auto-play music on first interaction with the page
+  document.body.addEventListener('click', function musicHandler() {
+    if (!isPlaying) {
+      music.play().then(() => {
+        isPlaying = true;
+        musicLabel.textContent = 'Pause Music';
+        musicToggle.classList.add('playing');
+      }).catch(() => {
+        console.log('Audio playback was prevented. User interaction required.');
+      });
+    }
+    
+    // Remove this handler after first click
+    document.body.removeEventListener('click', musicHandler);
+  }, { once: true });
+}
+
+// Initialize timeline functionality
+function initTimeline() {
+  const eventImage = document.getElementById("event-image");
+  const eventBlocks = document.querySelectorAll(".event");
   
-  section h2 {
-    font-size: 1.6em;
-  }
+  eventBlocks.forEach(event => {
+    event.addEventListener("click", () => {
+      // Remove active class from all events
+      eventBlocks.forEach(e => e.classList.remove('active'));
+      
+      // Add active class to clicked event
+      event.classList.add('active');
+      
+      // Change the image
+      const imgSrc = event.getAttribute("data-img");
+      if (imgSrc) {
+        eventImage.style.opacity = 0;
+        
+        setTimeout(() => {
+          eventImage.src = imgSrc;
+          eventImage.style.opacity = 1;
+        }, 300);
+      }
+    });
+  });
+}
+
+// Initialize quiz functionality
+function initQuiz() {
+  const optionButtons = document.querySelectorAll('.option-btn');
+  const quizQuestion = document.getElementById('quiz-question');
+  const quizResult = document.getElementById('quiz-result');
   
-  .envelope {
-    width: 280px;
-    height: 180px;
-  }
+  optionButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Hide question and show result with animation
+      quizQuestion.classList.add('animate__animated', 'animate__fadeOut');
+      
+      setTimeout(() => {
+        quizQuestion.classList.add('hidden');
+        quizResult.classList.remove('hidden');
+        quizResult.classList.add('animate__animated', 'animate__fadeIn');
+        
+        // Create heart shower animation
+        createHeartShower();
+      }, 500);
+    });
+  });
   
-  .letter {
-    padding: 15px;
-  }
-  
-  .letter h2 {
-    font-size: 1.5em;
-  }
-  
-  .letter p {
-    font-size: 1.2em;
-  }
-  
-  .timeline-image-container {
-    height: 200px;
-  }
-  
-  .quiz-container {
-    padding: 20px;
-  }
-  
-  .option-btn {
-    padding: 10px 15px;
-    font-size: 1em;
-  }
-  
-  .love-btn {
-    padding: 12px 25px;
-    font-size: 1em;
+  function createHeartShower() {
+    const hearts = 50;
+    const container = document.querySelector('.quiz-container');
+    
+    for (let i = 0; i < hearts; i++) {
+      const heart = document.createElement('div');
+      heart.innerHTML = '♥';
+      heart.style.position = 'absolute';
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.top = '0';
+      heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+      heart.style.color = 'rgba(255, 79, 129, ' + (Math.random() * 0.7 + 0.3) + ')';
+      heart.style.animation = 'fall ' + (Math.random() * 5 + 3) + 's linear forwards';
+      container.appendChild(heart);
+      
+      setTimeout(() => heart.remove(), 8000);
+    }
   }
 }
+
+// Initialize love message generator
+function initLoveMessages() {
+  const messages = [
+    "Every day with you is a new adventure I cherish.",
+    "Your smile is my favorite view in the whole world.",
+    "I fall in love with you a little more each day.",
+    "You make my heart skip a beat, even after all this time.",
+    "Together with you is my favorite place to be.",
+    "You're the missing piece I never knew I needed.",
+    "Your love feels like coming home after a long day.",
+    "With you, ordinary moments become extraordinary memories.",
+    "I love all of your little quirks that make you uniquely you.",
+    "You're not just my lover, but my best friend too."
+  ];
+  
+  const messageBtn = document.getElementById('message-btn');
+  const loveMessage = document.getElementById('love-message');
+  
+  messageBtn.addEventListener('click', () => {
+    // Hide current message with animation
+    loveMessage.classList.add('animate__animated', 'animate__fadeOut');
+    
+    setTimeout(() => {
+      // Select random message
+      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+      
+      // Update and show with new animation
+      loveMessage.textContent = randomMessage;
+      loveMessage.classList.remove('animate__fadeOut');
+      loveMessage.classList.add('animate__fadeIn');
+    }, 500);
+  });
+}
+
+// Add style for falling hearts animation
+const styleElement = document.createElement('style');
+styleElement.textContent = `
+  @keyframes fadeOut {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-20px) scale(1.5); }
+  }
+  
+  @keyframes fall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(400px) rotate(360deg); opacity: 0; }
+  }
+`;
+document.head.appendChild(styleElement);
