@@ -1,32 +1,31 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Happy 4 Months, Love!</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
     <h1 class="typewriter-text">Happy 4 Months, MiBubis!</h1>
     <p>Every moment with you feels like a little piece of forever.</p>
 
-    <button class="love-btn" onclick="showLoveNote()">Open Love Letter</button>
+    <button class="love-btn" onclick="openEnvelope()">Open Love Letter</button>
 
     <div class="envelope" onclick="openEnvelope()">
       <div class="flap"></div>
-      <div class="letter hidden">
-    <h2>Alla Mia Persona Preferita</h2>
-<p>
-  Vorrei ringraziare non solo Dio, ma anche Gay Jesus per averti fatto fare swipe su di me. Dal nostro primo appuntamento di tre giorni fino adesso, che praticamente abbiamo un gatto insieme:
-  Sei stata la mia migliore amica, il mio conforto più grande, e tutto il mio cuore <3 Amo la vita con te.
-  <br><br>
-  Amo ridere con te fino a farci male alla pancia. Amo che possiamo parlare di tutto e di niente per ore. Sei proprio "codificata come gli Egizi credevano".
-  Con te mi sento al sicuro, visto, e più amato di quanto lo sia mai stato prima.
-  <br><br>
-  Non so cosa ho fatto per meritarti, ma ogni singolo giorno sono grato di poterti amare.
+      <div class="letter">
+        <h2>Alla Mia Persona Preferita</h2>
+        <p>
+          Vorrei ringraziare non solo Dio, ma anche Gay Jesus per averti fatto fare swipe su di me. Dal nostro primo appuntamento di tre giorni fino adesso, che praticamente abbiamo un gatto insieme:
+          Sei stata la mia migliore amica, il mio conforto più grande, e tutto il mio cuore <3 Amo la vita con te.
+          <br><br>
+          Amo ridere con te fino a farci male alla pancia. Amo che possiamo parlare di tutto e di niente per ore. Sei proprio "codificata come gli Egizi credevano".
+          Con te mi sento al sicuro, visto, e più amato di quanto lo sia mai stato prima.
+          <br><br>
+          Non so cosa ho fatto per meritarti, ma ogni singolo giorno sono grato di poterti amare.
         </p>
       </div>
     </div>
@@ -35,21 +34,24 @@
 
     <div class="timeline">
       <h2>Our Story So Far</h2>
-      <div class="event">Day 1–3: Our “first date” turned into 72 hours of nonstop magic</div>
-      <div class="event">Month 1: Realizing I found my favorite human</div>
-      <div class="event">Month 2: Nonstop laughter, deep talks, inside jokes</div>
-      <div class="event">Month 3: Feeling even more at home in your arms</div>
-      <div class="event">Month 4: Safe, loved, and completely yours</div>
+      <img id="event-image" src="images/event1.jpg" alt="Event Image" class="timeline-img"/>
+
+      <div class="event" data-img="images/event1.jpg">Day 1–3: Our “first date” turned into 72 hours of nonstop magic</div>
+      <div class="event" data-img="images/event2.jpg">Month 1: Realizing I found my favorite human</div>
+      <div class="event" data-img="images/event3.jpg">Month 2: Nonstop laughter, deep talks, inside jokes</div>
+      <div class="event" data-img="images/event4.jpg">Month 3: Feeling even more at home in your arms</div>
+      <div class="event" data-img="images/event5.jpg">Month 4: Safe, loved, and completely yours</div>
     </div>
 
     <h2>Our Moments</h2>
     <div class="gallery">
-      <img src="images/photo1.jpg" alt="Us together">
-      <img src="images/photo2.jpg" alt="Laughing">
-      <img src="images/photo3.jpg" alt="A memory">
+      <img src="images/photo1.jpg" alt="Us together" />
+      <img src="images/photo2.jpg" alt="Laughing" />
+      <img src="images/photo3.jpg" alt="A memory" />
     </div>
   </div>
 
+  <audio id="bg-music" src="audio/song.mp3" loop></audio>
   <script src="script.js"></script>
 </body>
 </html>
