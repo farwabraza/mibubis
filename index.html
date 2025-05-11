@@ -478,27 +478,6 @@
       animation: pulse 1.5s infinite;
     }
     
-    /* Loading animation */
-    .loading-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #addcff 0%, #88c8ff 100%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      transition: opacity 0.8s ease-out;
-    }
-    
-    .heart-loader {
-      font-size: 60px;
-      color: white;
-      animation: pulse 1s infinite;
-    }
-    
     /* Responsive styles */
     @media (max-width: 768px) {
       .gallery {
@@ -539,10 +518,12 @@
   </style>
 </head>
 <body>
-  <!-- Loading Overlay -->
+  <!-- Removing loading overlay temporarily to prevent getting stuck -->
+  <!-- 
   <div class="loading-overlay" id="loading-overlay">
     <div class="heart-loader">❤️</div>
   </div>
+  -->
 
   <!-- Floating Hearts Background -->
   <div class="heart-container" id="heart-container"></div>
@@ -652,14 +633,10 @@
   <script>
     // Wait for document to load
     document.addEventListener('DOMContentLoaded', function() {
-      // Hide loading screen after a short delay
-      setTimeout(function() {
-        const loadingOverlay = document.getElementById('loading-overlay');
-        loadingOverlay.style.opacity = '0';
-        setTimeout(function() {
-          loadingOverlay.style.display = 'none';
-        }, 800);
-      }, 1500);
+      // Make sure sections are visible
+      document.querySelectorAll('section').forEach(section => {
+        section.style.opacity = '1';
+      });
       
       // Initialize floating hearts
       createFloatingHearts();
@@ -716,74 +693,74 @@
       }, 600);
     }
     
- // Love message array
-    loveMessages = [
+ // Love message array - FIXED with missing 'const'
+    const loveMessages = [
   "Sei la mozzarella sulla mia pizza emotiva.",
   "Your face? Limited edition. One of one. I checked.",
   "Ti amo come le nonne amano dire 'mangia ancora'.",
-  "You're my comfort gelato. I’d lick you. Respectfully.",
+  "You're my comfort gelato. I'd lick you. Respectfully.",
   "Every time you call me 'amore' I forget my PIN.",
-  "You're not just my Roman Empire—you’re my whole Renaissance.",
+  "You're not just my Roman Empire—you're my whole Renaissance.",
   "When you hold my hand, my inner child gets therapy.",
   "You're my little spaghetti. Long, warm, and tangled in my heart.",
   "If love was pasta, I'd be drowning in you. Alfredo style.",
   "Your love hits harder than espresso at 9PM.",
   "My heart does 'ciao bella' every time you walk in.",
-  "You’re the reason my brain goes ‘✨pasta e trauma✨’",
+  "You're the reason my brain goes '✨pasta e trauma✨'",
   "I wanna feed you tiramisù and then cry about it.",
-  "You’re the reason I believe in fate... and feral attraction.",
-  "Sei l’unico drama che voglio nella mia vita.",
+  "You're the reason I believe in fate... and feral attraction.",
+  "Sei l'unico drama che voglio nella mia vita.",
   "When you smile, I hear Italian violin music in HD.",
-  "You’re my TikTok FYP but it’s just videos of you blinking.",
+  "You're my TikTok FYP but it's just videos of you blinking.",
   "I wanna kiss you and then explain memes badly for 2 hours.",
   "You look like soft vibes and bad decisions. I love it.",
-  "You’re the ‘ciao’ to my ‘mamma mia I’m in love.’",
+  "You're the 'ciao' to my 'mamma mia I'm in love.'",
   "I'd simp for you in every language—'ti prego sposami'.",
   "You're the reason I scream 'BASTA' into my pillow... lovingly.",
   "If loving you is cringe, I hope I never touch sanity again.",
-  "My toxic trait? Thinking we’re already married in Italy.",
+  "My toxic trait? Thinking we're already married in Italy.",
   "You're my daily dose of 'oh no I'm obsessed again'.",
   "Your voice is my Roman holiday. Unhinged and dreamy.",
   "You're so fine, even my abuela would approve.",
-  "You're my panettone of passion and I’m not even mad.",
-  "You could say 'ciao' and I’d write a 12-part fanfic about it."
+  "You're my panettone of passion and I'm not even mad.",
+  "You could say 'ciao' and I'd write a 12-part fanfic about it.",
   "You're the reason I smile at my phone like an idiot.",
   "If I were a cat, I'd still choose you over sunbeams.",
-  "You’re my favorite reason to procrastinate everything else.",
-  "I’d let you eat the last fry. That’s love.",
+  "You're my favorite reason to procrastinate everything else.",
+  "I'd let you eat the last fry. That's love.",
   "My brain short-circuits every time you say my name.",
   "You're the peanut butter to my emotional breakdowns.",
-  "If loving you is a crime, I’m a repeat offender.",
+  "If loving you is a crime, I'm a repeat offender.",
   "My love for you is like a bad tattoo—forever and a little unhinged.",
-  "You make my stomach feel like it’s throwing a rave.",
-  "You’re my daily serotonin hit.",
-  "If you were a bug, I’d build you a tiny house, not squish you.",
+  "You make my stomach feel like it's throwing a rave.",
+  "You're my daily serotonin hit.",
+  "If you were a bug, I'd build you a tiny house, not squish you.",
   "You make my neurons giggle.",
-  "I’d fight a hundred ducks just to hold your hand.",
+  "I'd fight a hundred ducks just to hold your hand.",
   "You make my heart do parkour.",
   "I love you more than I love Wi-Fi.",
-  "You’re the human equivalent of a cozy hoodie and emotional stability.",
+  "You're the human equivalent of a cozy hoodie and emotional stability.",
   "Your laugh is my new religion.",
   "You're my emergency contact in the mental breakdown of life.",
   "I want to kiss your dumb face forever.",
-  "You’re my favorite distraction from existential dread.",
-  "Even my intrusive thoughts are like ‘dang, they’re cute.’",
-  "If we were penguins, I’d give you my best rock.",
+  "You're my favorite distraction from existential dread.",
+  "Even my intrusive thoughts are like 'dang, they're cute.'",
+  "If we were penguins, I'd give you my best rock.",
   "You + me = psychological damage but make it cute.",
-  "You’re the chaos I want in my life.",
+  "You're the chaos I want in my life.",
   "I want to send you memes for the rest of eternity.",
   "You're like a walking serotonin boost in human form.",
   "You make my heart scream in lowercase.",
-  "If I could rearrange the alphabet, I’d put U and I in therapy together.",
+  "If I could rearrange the alphabet, I'd put U and I in therapy together.",
   "You make me feel like a badly coded dating sim—full of glitches but in love.",
-  "You’re the reason I Google ‘how to stop smiling like a dork.’",
+  "You're the reason I Google 'how to stop smiling like a dork.'",
   "You're the dessert to my emotional buffet.",
   "You're like my favorite hoodie—comforting, soft, and I never want to take you off.",
-  "I’d share my snacks with you, even the expensive ones.",
+  "I'd share my snacks with you, even the expensive ones.",
   "My brain cells throw a dance party every time you text me.",
-  "If I had to explain love, I’d just show them a pic of you.",
+  "If I had to explain love, I'd just show them a pic of you.",
   "You're my soft place to land, even when I'm dramatic.",
-  "I didn’t believe in soulmates until you called me ‘bubis.’",
+  "I didn't believe in soulmates until you called me 'bubis.'",
   "You make my heart feel like a raccoon in a dumpster—thriving and full.",
   "I want to wrap you in a blanket and call it forever.",
   "You're my favorite person to be weird around.",
@@ -791,90 +768,90 @@
   "I love you more than my sleep schedule hates me.",
   "You're the playlist I didn't know I needed.",
   "Your face is my favorite notification.",
-  "I’d walk barefoot through LEGO for you.",
+  "I'd walk barefoot through LEGO for you.",
   "You're the only person I'd let bite my fries.",
   "Being with you feels like eating dessert before dinner—wrong but so right.",
   "If you were a soup, I'd slurp respectfully.",
   "You're the Wi-Fi signal to my soul.",
   "You're my daily dose of 'why am I like this' but in a good way.",
   "Your love is like caffeine—I crave it and I'm mildly dependent.",
-  "You’re the glitch in my emotional matrix.",
+  "You're the glitch in my emotional matrix.",
   "If loving you is brainrot, I hope I never recover.",
-  "I’d press ‘restart level’ just to meet you again.",
-  "You’re the trash panda to my chaotic night.",
-  "If cuddling were an Olympic sport, we’d have gold medals.",
+  "I'd press 'restart level' just to meet you again.",
+  "You're the trash panda to my chaotic night.",
+  "If cuddling were an Olympic sport, we'd have gold medals.",
   "You make my inner child do cartwheels.",
-  "You’re the love child of chaos and comfort—and I adore it.",
+  "You're the love child of chaos and comfort—and I adore it.",
   "I like you more than tacos on a sad day.",
   "You're the plot twist in my otherwise boring story.",
   "You're so cute I forgot how to breathe for a second.",
   "You're my favorite part of every imaginary scenario I daydream.",
-  "If love were a game, you’d be the secret level with all the treasure.",
+  "If love were a game, you'd be the secret level with all the treasure.",
   "You + me = softcore chaos and a lot of kissing.",
   "My heart wrote you a love song but it's mostly 'AAAAA'.",
-  "You're the main character of my brain’s fanfiction.",
+  "You're the main character of my brain's fanfiction.",
   "I want to build a pillow fort and emotionally unpack with you.",
   "You make me feel like a marshmallow in hot chocolate—melted and sweet.",
-  "You’re the ‘good’ in my mental breakdown.",
+  "You're the 'good' in my mental breakdown.",
   "I love you like a raccoon loves shiny things—obsessively.",
-  "You’re the reason I know how butterflies feel in the stomach.",
+  "You're the reason I know how butterflies feel in the stomach.",
   "If I could teleport, I'd use it just to hug you.",
-  "You're the reason my brain is 90% ‘awwww’ lately.",
-  "I’d let you hold my charger hostage and I wouldn’t even be mad.",
+  "You're the reason my brain is 90% 'awwww' lately.",
+  "I'd let you hold my charger hostage and I wouldn't even be mad.",
   "Your love language is confusing me with how adorable you are.",
-  "You’re the emotional support himbo of my dreams.",
+  "You're the emotional support himbo of my dreams.",
   "I want to wake up next to you and argue about cereal shapes.",
   "You're better than all my comfort characters combined.",
   "I love you so much it makes my anxiety take a nap.",
   "You give me hope that not all humans are bad. Just most.",
-  "If I were a sandwich, I’d want you to be my cheese.",
-  "You're the human version of my ‘for you’ page.",
-  "If love was a cult, I’d join yours and make matching robes.",
+  "If I were a sandwich, I'd want you to be my cheese.",
+  "You're the human version of my 'for you' page.",
+  "If love was a cult, I'd join yours and make matching robes.",
   "You make me want to write fanfiction starring us.",
-  "You're my brainrot and I wouldn’t have it any other way.",
+  "You're my brainrot and I wouldn't have it any other way.",
   "You're my favorite existential crisis buddy.",
   "If I had to go to war, I'd write your name on my helmet.",
   "You're the love child of serotonin and dumb jokes.",
-  "You’re the reason I embarrass myself smiling at my phone.",
-  "You’re my forever crush, even when I’m grumpy.",
-  "If I had a nickel for every time I thought of you, I’d have enough to buy us a picnic date.",
+  "You're the reason I embarrass myself smiling at my phone.",
+  "You're my forever crush, even when I'm grumpy.",
+  "If I had a nickel for every time I thought of you, I'd have enough to buy us a picnic date.",
   "You're my daily reminder that love can be funny and weird and perfect.",
   "You're the glitchy, golden retriever energy my heart needed.",
-  "If you were a spell, you’d be the kind that makes my heart explode with sparkles.",
-  "You're the person I’d share my last brain cell with.",
-  "I love you so much, I’d even watch your favorite show without subtitles.",
+  "If you were a spell, you'd be the kind that makes my heart explode with sparkles.",
+  "You're the person I'd share my last brain cell with.",
+  "I love you so much, I'd even watch your favorite show without subtitles.",
   "You're my favorite hello and my most annoying goodbye.",
   "You're the reason my mirror asks why I'm smiling.",
   "You're the exact level of chaos I want in my forever.",
-  "If you were a genre, you’d be romantic comedy with a twist of feral.",
+  "If you were a genre, you'd be romantic comedy with a twist of feral.",
   "You're my soulmate and my emotional support cryptid.",
   "My love for you could power a small unstable city.",
-  "You’re not just my girlfriend, you’re my daily plot twist.",
+  "You're not just my girlfriend, you're my daily plot twist.",
   "You're my OTP, my comfort ship, my emotional support gremlin.",
-  "You’re the main character in my brain's very serious romcom.",
+  "You're the main character in my brain's very serious romcom.",
   "You're the cat meme I never knew I needed in real life.",
   "You make me believe in love—and chaos. Mostly chaos.",
   "I want to hug you so tight your soul gets cozy.",
   "You're the spaghetti to my emotional meatball.",
   "My heart has you on speed dial.",
-  "You make my soul go ‘weeeeee!’ every time I see you.",
+  "You make my soul go 'weeeeee!' every time I see you.",
   "You're the cookie in my emotional crumble.",
   "You're the person I want to send 52 selfies to at 2AM.",
-  "If I had three wishes, they’d all be you. But like, slightly different versions for variety.",
-  "You're the plot armor in my life’s anime arc.",
+  "If I had three wishes, they'd all be you. But like, slightly different versions for variety.",
+  "You're the plot armor in my life's anime arc.",
   "You're the playlist I want to fall asleep to forever.",
-  "You’re the only notification I actually care about.",
+  "You're the only notification I actually care about.",
   "I want to build a little love nest out of chaos and cuddle in it with you.",
   "If my brain was a TV, you'd be playing on every channel.",
-  "You're my person. In the ‘I’d go feral if you left’ kind of way.",
+  "You're my person. In the 'I'd go feral if you left' kind of way.",
   "Your love turns my brain into soup. Delicious soup.",
   "You're my favorite kind of weird.",
   "You're my permanent emotional guest star.",
   "You're the ketchup to my existential hot dog.",
   "You're the one I want to annoy forever.",
-  "You’re my favorite glitch in the simulation.",
+  "You're my favorite glitch in the simulation.",
   "You're my comfort character, my OTP, my full send.",
-  "You're the playlist I’d never skip.",
+  "You're the playlist I'd never skip.",
   "You're the love letter my brain keeps rereading.",
   "You're the reason I believe in stupidly cute things.",
   "You're the sunshine that makes my overthinking sweat."
@@ -882,77 +859,92 @@
     
     // Get daily message based on date
     function getDailyMessage() {
-      const today = new Date();
-      const dateString = `${today.getMonth() + 1}${today.getDate()}${today.getFullYear()}`;
-      const dateSum = String(dateString).split('').reduce((sum, digit) => sum + parseInt(digit || 0, 10), 0);
-      const todayIndex = dateSum % loveMessages.length;
-      return loveMessages[todayIndex];
+      try {
+        const today = new Date();
+        const dateString = `${today.getMonth() + 1}${today.getDate()}${today.getFullYear()}`;
+        const dateSum = String(dateString).split('').reduce((sum, digit) => sum + parseInt(digit || 0, 10), 0);
+        const todayIndex = dateSum % loveMessages.length;
+        return loveMessages[todayIndex];
+      } catch (e) {
+        console.error("Error in getDailyMessage:", e);
+        return "I love you more each day";
+      }
     }
     
     // Show the daily message
     function showDailyMessage() {
-      const loveMessage = document.getElementById('love-message');
-      if (loveMessage) {
-        loveMessage.textContent = getDailyMessage();
+      try {
+        const loveMessage = document.getElementById('love-message');
+        if (loveMessage) {
+          loveMessage.textContent = getDailyMessage();
+        }
+      } catch (e) {
+        console.error("Error in showDailyMessage:", e);
       }
     }
     
     // Get a random message different from today's
     function getRandomMessage() {
-      const loveMessage = document.getElementById('love-message');
-      if (!loveMessage) return;
-      
-      const currentMessage = loveMessage.textContent;
-      let newMessage = currentMessage;
-      
-      // Make sure we get a different message
-      while (newMessage === currentMessage) {
-        const randomIndex = Math.floor(Math.random() * loveMessages.length);
-        newMessage = loveMessages[randomIndex];
+      try {
+        const loveMessage = document.getElementById('love-message');
+        if (!loveMessage) return;
+        
+        const currentMessage = loveMessage.textContent;
+        let newMessage = currentMessage;
+        
+        // Make sure we get a different message
+        while (newMessage === currentMessage) {
+          const randomIndex = Math.floor(Math.random() * loveMessages.length);
+          newMessage = loveMessages[randomIndex];
+        }
+        
+        // Fade out, change, fade in animation
+        loveMessage.style.opacity = '0';
+        
+        setTimeout(function() {
+          loveMessage.textContent = newMessage;
+          loveMessage.style.opacity = '1';
+        }, 500);
+      } catch (e) {
+        console.error("Error in getRandomMessage:", e);
       }
-      
-      // Fade out, change, fade in animation
-      loveMessage.style.opacity = '0';
-      
-      setTimeout(function() {
-        loveMessage.textContent = newMessage;
-        loveMessage.style.opacity = '1';
-      }, 500);
     }
     
     // Timeline functions with animation
     function changeTimelineImage(eventNumber) {
-      const timelineImg = document.getElementById('timeline-img');
-      if (!timelineImg) return;
-      
-      // Add fade-out class
-      timelineImg.classList.remove('image-show');
-      timelineImg.classList.add('image-fade');
-      
-      // Update image source after fade out
-      setTimeout(function() {
-        // Update image source
-        timelineImg.src = `event${eventNumber}.jpg`;
+      try {
+        const timelineImg = document.getElementById('timeline-img');
+        if (!timelineImg) return;
         
-        // Handle image loading error
-        timelineImg.onerror = function() {
-          this.src = `https://via.placeholder.com/500x300/bedeff/ffffff?text=Event+${eventNumber}`;
-        };
+        // Fade out image
+        timelineImg.style.opacity = '0';
         
-        // Remove fade-out class and add fade-in class
-        timelineImg.classList.remove('image-fade');
-        timelineImg.classList.add('image-show');
-      }, 500);
-      
-      // Update active event
-      const events = document.querySelectorAll('.event');
-      events.forEach((event, index) => {
-        if (index + 1 === eventNumber) {
-          event.classList.add('active');
-        } else {
-          event.classList.remove('active');
-        }
-      });
+        // Update image source after fade out
+        setTimeout(function() {
+          // Update image source
+          timelineImg.src = `event${eventNumber}.jpg`;
+          
+          // Handle image loading error
+          timelineImg.onerror = function() {
+            this.src = `https://via.placeholder.com/500x300/bedeff/ffffff?text=Event+${eventNumber}`;
+          };
+          
+          // Fade in image
+          timelineImg.style.opacity = '1';
+          
+          // Update active event
+          const events = document.querySelectorAll('.event');
+          events.forEach((event, index) => {
+            if (index + 1 === eventNumber) {
+              event.classList.add('active');
+            } else {
+              event.classList.remove('active');
+            }
+          });
+        }, 300);
+      } catch (e) {
+        console.error("Error in changeTimelineImage:", e);
+      }
     }
   </script>
 </body>
