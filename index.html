@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy 4 Months, Amore!</title>
+  <title>Happy 4 Months, Love!</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     /* All styles in one file with light blue color scheme */
@@ -314,7 +314,7 @@
       margin-top: 20px;
     }
     
-    /* Interactive Timeline styles */
+    /* Fixed Timeline styles with better image display */
     .timeline {
       position: relative;
       max-width: 600px;
@@ -377,21 +377,26 @@
       font-size: 18px;
     }
     
-    .timeline-image {
-      display: block;
+    /* Improved timeline image display */
+    .timeline-image-container {
       width: 100%;
-      height: 200px;
+      max-width: 600px;
+      height: 250px;
       border-radius: 10px;
       overflow: hidden;
       margin: 0 auto 30px;
       box-shadow: var(--shadow);
+      background-color: var(--card-bg);
+      position: relative;
     }
     
-    .timeline-image img {
+    .timeline-image {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* Changed from cover to contain */
       transition: opacity 0.3s ease;
+      background-color: #f0f8ff;
+      padding: 5px;
     }
     
     /* Love Message styles */
@@ -531,6 +536,10 @@
       .love-message {
         font-size: 20px;
       }
+      
+      .timeline-image-container {
+        height: 200px;
+      }
     }
   </style>
 </head>
@@ -592,7 +601,7 @@
           Sei stata la mia migliore amica, il mio conforto più grande, e tutto il mio cuore ❤️ Amo la vita con te.
         </p>
         <p>
-          Amo ridere con te fino a farci male alla pancia. Amo che possiamo parlare di tutto e di niente per ore. Sei proprio "The Egyptians believed" coded.
+          Amo ridere con te fino a farci male alla pancia. Amo che possiamo parlare di tutto e di niente per ore. Sei proprio "codificata come gli Egizi credevano".
           Con te mi sento al sicuro, visto, e più amato di quanto lo sia mai stato prima.
         </p>
         <p>
@@ -604,8 +613,8 @@
 
     <section>
       <h2>Our Story So Far</h2>
-      <div class="timeline-image">
-        <img id="timeline-img" src="images/event1.jpg" alt="Our Story" onerror="this.src='https://via.placeholder.com/600x300/bedeff/ffffff?text=Our+Journey'">
+      <div class="timeline-image-container">
+        <img id="timeline-img" src="images/event1.jpg" alt="Our Story" class="timeline-image" onerror="this.src='https://via.placeholder.com/600x300/bedeff/ffffff?text=Our+Journey'">
       </div>
       <div class="timeline">
         <div class="event active" onclick="changeTimelineImage('images/event1.jpg')">
@@ -794,39 +803,168 @@
     }
     
     // Love message functions
-    const loveMessages = [
-      "You're the first thing I think about when I wake up and the last thing I think about before I fall asleep.",
-      "Every moment with you makes life more beautiful.",
-      "You make my heart smile in ways no one else can.",
-      "In your eyes, I've found my home.",
-      "Your love is the greatest gift I've ever received.",
-      "When I'm with you, I feel like the luckiest person alive.",
-      "You make ordinary moments feel extraordinary.",
-      "I never knew I could love someone the way I love you.",
-      "Your smile brightens even my darkest days.",
-      "Forever won't be long enough to spend with you.",
-      "Being with you feels like coming home.",
-      "Your love gives me strength I never knew I had.",
-      "You're the reason I believe in love.",
-      "I love you more than yesterday, but less than tomorrow.",
-      "Meeting you was fate, becoming your boyfriend was a choice, but falling in love with you was beyond my control.",
-      "You're my favorite notification.",
-      "I'd choose you in a hundred lifetimes, in a hundred worlds, in any version of reality.",
-      "Every second, every minute, every hour spent with you is time well spent.",
-      "You're the missing piece I never knew I needed.",
-      "You make my heart beat in ways I didn't know it could.",
-      "Loving you is as natural as breathing.",
-      "My favorite place in the world is next to you.",
-      "With you, even the smallest moments feel magical.",
-      "You're the best part of my day, every day.",
-      "I didn't know what it meant to truly smile until I met you.",
-      "You make my heart feel like it's dancing.",
-      "Being loved by you is like a dream I never want to wake up from.",
-      "My heart recognized you before my eyes did.",
-      "You're the rhythm to my heart's beat.",
-      "With you, I've found the love I've always dreamed of.",
-      "Your love is the greatest adventure I've ever been on."
-    ];
+    loveMessages = [
+  "Sei la mozzarella sulla mia pizza emotiva.",
+  "Your face? Limited edition. One of one. I checked.",
+  "Ti amo come le nonne amano dire 'mangia ancora'.",
+  "You're my comfort gelato. I’d lick you. Respectfully.",
+  "Every time you call me 'amore' I forget my PIN.",
+  "You're not just my Roman Empire—you’re my whole Renaissance.",
+  "When you hold my hand, my inner child gets therapy.",
+  "You're my little spaghetti. Long, warm, and tangled in my heart.",
+  "If love was pasta, I'd be drowning in you. Alfredo style.",
+  "Your love hits harder than espresso at 9PM.",
+  "My heart does 'ciao bella' every time you walk in.",
+  "You’re the reason my brain goes ‘✨pasta e trauma✨’",
+  "I wanna feed you tiramisù and then cry about it.",
+  "You’re the reason I believe in fate... and feral attraction.",
+  "Sei l’unico drama che voglio nella mia vita.",
+  "When you smile, I hear Italian violin music in HD.",
+  "You’re my TikTok FYP but it’s just videos of you blinking.",
+  "I wanna kiss you and then explain memes badly for 2 hours.",
+  "You look like soft vibes and bad decisions. I love it.",
+  "You’re the ‘ciao’ to my ‘mamma mia I’m in love.’",
+  "I'd simp for you in every language—'ti prego sposami'.",
+  "You're the reason I scream 'BASTA' into my pillow... lovingly.",
+  "If loving you is cringe, I hope I never touch sanity again.",
+  "My toxic trait? Thinking we’re already married in Italy.",
+  "You're my daily dose of 'oh no I'm obsessed again'.",
+  "Your voice is my Roman holiday. Unhinged and dreamy.",
+  "You're so fine, even my abuela would approve.",
+  "You're my panettone of passion and I’m not even mad.",
+  "You could say 'ciao' and I’d write a 12-part fanfic about it."
+  "You're the reason I smile at my phone like an idiot.",
+  "If I were a cat, I'd still choose you over sunbeams.",
+  "You’re my favorite reason to procrastinate everything else.",
+  "I’d let you eat the last fry. That’s love.",
+  "My brain short-circuits every time you say my name.",
+  "You're the peanut butter to my emotional breakdowns.",
+  "If loving you is a crime, I’m a repeat offender.",
+  "My love for you is like a bad tattoo—forever and a little unhinged.",
+  "You make my stomach feel like it’s throwing a rave.",
+  "You’re my daily serotonin hit.",
+  "If you were a bug, I’d build you a tiny house, not squish you.",
+  "You make my neurons giggle.",
+  "I’d fight a hundred ducks just to hold your hand.",
+  "You make my heart do parkour.",
+  "I love you more than I love Wi-Fi.",
+  "You’re the human equivalent of a cozy hoodie and emotional stability.",
+  "Your laugh is my new religion.",
+  "You're my emergency contact in the mental breakdown of life.",
+  "I want to kiss your dumb face forever.",
+  "You’re my favorite distraction from existential dread.",
+  "Even my intrusive thoughts are like ‘dang, they’re cute.’",
+  "If we were penguins, I’d give you my best rock.",
+  "You + me = psychological damage but make it cute.",
+  "You’re the chaos I want in my life.",
+  "I want to send you memes for the rest of eternity.",
+  "You're like a walking serotonin boost in human form.",
+  "You make my heart scream in lowercase.",
+  "If I could rearrange the alphabet, I’d put U and I in therapy together.",
+  "You make me feel like a badly coded dating sim—full of glitches but in love.",
+  "You’re the reason I Google ‘how to stop smiling like a dork.’",
+  "You're the dessert to my emotional buffet.",
+  "You're like my favorite hoodie—comforting, soft, and I never want to take you off.",
+  "I’d share my snacks with you, even the expensive ones.",
+  "My brain cells throw a dance party every time you text me.",
+  "If I had to explain love, I’d just show them a pic of you.",
+  "You're my soft place to land, even when I'm dramatic.",
+  "I didn’t believe in soulmates until you called me ‘bubis.’",
+  "You make my heart feel like a raccoon in a dumpster—thriving and full.",
+  "I want to wrap you in a blanket and call it forever.",
+  "You're my favorite person to be weird around.",
+  "You make my life feel like a rom-com directed by chaos.",
+  "I love you more than my sleep schedule hates me.",
+  "You're the playlist I didn't know I needed.",
+  "Your face is my favorite notification.",
+  "I’d walk barefoot through LEGO for you.",
+  "You're the only person I'd let bite my fries.",
+  "Being with you feels like eating dessert before dinner—wrong but so right.",
+  "If you were a soup, I'd slurp respectfully.",
+  "You're the Wi-Fi signal to my soul.",
+  "You're my daily dose of 'why am I like this' but in a good way.",
+  "Your love is like caffeine—I crave it and I'm mildly dependent.",
+  "You’re the glitch in my emotional matrix.",
+  "If loving you is brainrot, I hope I never recover.",
+  "I’d press ‘restart level’ just to meet you again.",
+  "You’re the trash panda to my chaotic night.",
+  "If cuddling were an Olympic sport, we’d have gold medals.",
+  "You make my inner child do cartwheels.",
+  "You’re the love child of chaos and comfort—and I adore it.",
+  "I like you more than tacos on a sad day.",
+  "You're the plot twist in my otherwise boring story.",
+  "You're so cute I forgot how to breathe for a second.",
+  "You're my favorite part of every imaginary scenario I daydream.",
+  "If love were a game, you’d be the secret level with all the treasure.",
+  "You + me = softcore chaos and a lot of kissing.",
+  "My heart wrote you a love song but it's mostly 'AAAAA'.",
+  "You're the main character of my brain’s fanfiction.",
+  "I want to build a pillow fort and emotionally unpack with you.",
+  "You make me feel like a marshmallow in hot chocolate—melted and sweet.",
+  "You’re the ‘good’ in my mental breakdown.",
+  "I love you like a raccoon loves shiny things—obsessively.",
+  "You’re the reason I know how butterflies feel in the stomach.",
+  "If I could teleport, I'd use it just to hug you.",
+  "You're the reason my brain is 90% ‘awwww’ lately.",
+  "I’d let you hold my charger hostage and I wouldn’t even be mad.",
+  "Your love language is confusing me with how adorable you are.",
+  "You’re the emotional support himbo of my dreams.",
+  "I want to wake up next to you and argue about cereal shapes.",
+  "You're better than all my comfort characters combined.",
+  "I love you so much it makes my anxiety take a nap.",
+  "You give me hope that not all humans are bad. Just most.",
+  "If I were a sandwich, I’d want you to be my cheese.",
+  "You're the human version of my ‘for you’ page.",
+  "If love was a cult, I’d join yours and make matching robes.",
+  "You make me want to write fanfiction starring us.",
+  "You're my brainrot and I wouldn’t have it any other way.",
+  "You're my favorite existential crisis buddy.",
+  "If I had to go to war, I'd write your name on my helmet.",
+  "You're the love child of serotonin and dumb jokes.",
+  "You’re the reason I embarrass myself smiling at my phone.",
+  "You’re my forever crush, even when I’m grumpy.",
+  "If I had a nickel for every time I thought of you, I’d have enough to buy us a picnic date.",
+  "You're my daily reminder that love can be funny and weird and perfect.",
+  "You're the glitchy, golden retriever energy my heart needed.",
+  "If you were a spell, you’d be the kind that makes my heart explode with sparkles.",
+  "You're the person I’d share my last brain cell with.",
+  "I love you so much, I’d even watch your favorite show without subtitles.",
+  "You're my favorite hello and my most annoying goodbye.",
+  "You're the reason my mirror asks why I'm smiling.",
+  "You're the exact level of chaos I want in my forever.",
+  "If you were a genre, you’d be romantic comedy with a twist of feral.",
+  "You're my soulmate and my emotional support cryptid.",
+  "My love for you could power a small unstable city.",
+  "You’re not just my girlfriend, you’re my daily plot twist.",
+  "You're my OTP, my comfort ship, my emotional support gremlin.",
+  "You’re the main character in my brain's very serious romcom.",
+  "You're the cat meme I never knew I needed in real life.",
+  "You make me believe in love—and chaos. Mostly chaos.",
+  "I want to hug you so tight your soul gets cozy.",
+  "You're the spaghetti to my emotional meatball.",
+  "My heart has you on speed dial.",
+  "You make my soul go ‘weeeeee!’ every time I see you.",
+  "You're the cookie in my emotional crumble.",
+  "You're the person I want to send 52 selfies to at 2AM.",
+  "If I had three wishes, they’d all be you. But like, slightly different versions for variety.",
+  "You're the plot armor in my life’s anime arc.",
+  "You're the playlist I want to fall asleep to forever.",
+  "You’re the only notification I actually care about.",
+  "I want to build a little love nest out of chaos and cuddle in it with you.",
+  "If my brain was a TV, you'd be playing on every channel.",
+  "You're my person. In the ‘I’d go feral if you left’ kind of way.",
+  "Your love turns my brain into soup. Delicious soup.",
+  "You're my favorite kind of weird.",
+  "You're my permanent emotional guest star.",
+  "You're the ketchup to my existential hot dog.",
+  "You're the one I want to annoy forever.",
+  "You’re my favorite glitch in the simulation.",
+  "You're my comfort character, my OTP, my full send.",
+  "You're the playlist I’d never skip.",
+  "You're the love letter my brain keeps rereading.",
+  "You're the reason I believe in stupidly cute things.",
+  "You're the sunshine that makes my overthinking sweat."
+];
     
     // Get daily message based on date
     function getDailyMessage() {
