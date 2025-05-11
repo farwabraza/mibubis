@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy 4 Months, Amore!</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy 4 Months, Love!</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
-    /* Inline critical CSS to ensure it loads */
-    body {
+    /* All styles in one file for simplicity */
+    * {
+      box-sizing: border-box;
       margin: 0;
+      padding: 0;
+    }
+    
+    body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(135deg, #f8cdda 0%, #f88ca4 100%);
       color: #333;
+      min-height: 100vh;
       overflow-x: hidden;
+      padding-bottom: 40px;
     }
     
     .container {
@@ -22,33 +29,38 @@
       text-align: center;
     }
     
-    h1 {
-      color: #fff;
-      font-size: 2.5rem;
-      margin-bottom: 15px;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    header {
+      margin-bottom: 40px;
     }
     
-    p {
-      line-height: 1.6;
+    h1 {
+      color: #fff;
+      font-size: 36px;
+      margin-bottom: 15px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
     }
     
     .subtitle {
       color: #fff;
-      font-size: 1.2rem;
-      margin-bottom: 30px;
+      font-size: 18px;
     }
     
     section {
       margin-bottom: 50px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
     }
     
     h2 {
       color: #fff;
-      margin: 30px 0 20px;
+      font-size: 28px;
+      margin-bottom: 20px;
       position: relative;
       display: inline-block;
-      font-size: 1.8rem;
     }
     
     h2::after {
@@ -56,179 +68,337 @@
       display: block;
       width: 70%;
       height: 3px;
-      background-color: rgba(255,255,255,0.5);
+      background-color: rgba(255, 255, 255, 0.5);
       margin: 5px auto 0;
     }
     
-    .loading-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #f8cdda;
+    p {
+      line-height: 1.6;
+    }
+    
+    /* Gallery styles */
+    .gallery {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
-      z-index: 1000;
-      transition: opacity 0.5s ease-in-out;
+      gap: 20px;
+      margin-top: 20px;
     }
     
-    .heart-loader {
+    .gallery img {
+      width: 100%;
+      max-width: 200px;
+      border-radius: 10px;
+      border: 5px solid white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+    
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    
+    /* Letter styles */
+    .letter {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .letter h3 {
+      color: #e75480;
+      font-family: 'Dancing Script', cursive;
+      font-size: 28px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    
+    .letter p {
+      font-family: 'Dancing Script', cursive;
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+    
+    .signature {
+      text-align: right;
+      font-family: 'Dancing Script', cursive;
+      font-size: 24px;
+      color: #e75480;
+      margin-top: 20px;
+    }
+    
+    /* Timeline styles */
+    .timeline {
+      position: relative;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 20px;
+      width: 3px;
+      background-color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .event {
+      position: relative;
+      margin-bottom: 30px;
+      padding-left: 50px;
+      text-align: left;
+    }
+    
+    .event-marker {
+      position: absolute;
+      left: 10px;
+      top: 5px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: white;
+      border: 3px solid #ff4f81;
+      z-index: 1;
+    }
+    
+    .event-content {
+      background-color: rgba(255, 255, 255, 0.85);
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .event-content h3 {
+      color: #e75480;
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+    
+    /* Love Message styles */
+    .love-message {
+      font-family: 'Dancing Script', cursive;
+      font-size: 24px;
+      color: white;
+      margin: 30px 0 15px;
+      padding: 15px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+    
+    .love-message::before, 
+    .love-message::after {
+      content: '"';
       font-size: 50px;
-      color: #fff;
-      animation: heartbeat 1.2s infinite;
+      color: rgba(255, 255, 255, 0.5);
+      position: absolute;
     }
     
-    @keyframes heartbeat {
+    .love-message::before {
+      top: -15px;
+      left: -15px;
+    }
+    
+    .love-message::after {
+      bottom: -35px;
+      right: -15px;
+    }
+    
+    .message-date {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 30px;
+    }
+    
+    footer {
+      margin-top: 40px;
+      color: white;
+      font-size: 16px;
+    }
+    
+    .heart-icon {
+      color: #ff4f81;
+      display: inline-block;
+      animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.3); }
       100% { transform: scale(1); }
     }
-
-    /* Animation for love message */
-    .love-message {
-      transition: opacity 0.5s ease;
-    }
-
-    /* Animation for the daily message indicator */
-    .daily-indicator {
-      display: inline-block;
-      padding: 4px 8px;
-      background-color: rgba(255, 255, 255, 0.3);
-      border-radius: 12px;
-      font-size: 0.7rem;
-      margin-left: 10px;
-      vertical-align: middle;
+    
+    /* Responsive styles */
+    @media (max-width: 768px) {
+      .gallery {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .gallery img {
+        max-width: 80%;
+      }
+      
+      .letter {
+        padding: 20px;
+      }
+      
+      .letter h3 {
+        font-size: 24px;
+      }
+      
+      .letter p {
+        font-size: 18px;
+      }
+      
+      .love-message {
+        font-size: 20px;
+      }
     }
   </style>
-  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Loading overlay -->
-  <div class="loading-overlay" id="loading-overlay">
-    <div class="heart-loader">❤️</div>
-  </div>
-
   <div class="container">
     <header>
-      <h1 class="title">Happy 4 Months, MiBubis!</h1>
+      <h1>Happy 4 Months, MiBubis!</h1>
       <p class="subtitle">Every moment with you feels like a little piece of forever.</p>
     </header>
 
-    <!-- Gallery Section -->
-    <section class="gallery-section">
+    <section>
       <h2>Our Moments</h2>
       <div class="gallery">
-        <div class="photo-card">
-          <div class="photo-container">
-            <img src="images/photo1.jpg" alt="Us together" class="photo" />
-          </div>
-          <p class="photo-caption">My favorite smile</p>
-        </div>
-        <div class="photo-card">
-          <div class="photo-container">
-            <img src="images/photo2.jpg" alt="Laughing" class="photo" />
-          </div>
-          <p class="photo-caption">Laughing with you</p>
-        </div>
-        <div class="photo-card">
-          <div class="photo-container">
-            <img src="images/photo3.jpg" alt="A memory" class="photo" />
-          </div>
-          <p class="photo-caption">Our adventure</p>
-        </div>
+        <img src="photo1.jpg" alt="Us together" onerror="this.src='https://via.placeholder.com/200x200?text=Our+Photo'">
+        <img src="photo2.jpg" alt="Laughing together" onerror="this.src='https://via.placeholder.com/200x200?text=Our+Photo'">
+        <img src="photo3.jpg" alt="A memory" onerror="this.src='https://via.placeholder.com/200x200?text=Our+Photo'">
       </div>
     </section>
 
-    <!-- Love Letter Section -->
-    <section class="letter-section">
+    <section>
       <h2>My Love Letter</h2>
-      <div class="envelope" id="envelope">
-        <div class="flap"></div>
-        <div class="letter">
-          <h3>Alla Mia Persona Preferita</h3>
-          <p>
-            Vorrei ringraziare non solo Dio, ma anche Gay Jesus per averti fatto fare swipe su di me. Dal nostro primo appuntamento di tre giorni fino adesso, che praticamente abbiamo un gatto insieme:
-            Sei stata la mia migliore amica, il mio conforto più grande, e tutto il mio cuore ❤️ Amo la vita con te.
-          </p>
-          <p>
-            Amo ridere con te fino a farci male alla pancia. Amo che possiamo parlare di tutto e di niente per ore. Sei proprio "codificata come gli Egizi credevano".
-            Con te mi sento al sicuro, visto, e più amato di quanto lo sia mai stato prima.
-          </p>
-          <p>
-            Non so cosa ho fatto per meritarti, ma ogni singolo giorno sono grato di poterti amare.
-          </p>
-          <div class="letter-signature">Con tutto il mio amore</div>
-        </div>
+      <div class="letter">
+        <h3>Alla Mia Persona Preferita</h3>
+        <p>
+          Vorrei ringraziare non solo Dio, ma anche Gay Jesus per averti fatto fare swipe su di me. Dal nostro primo appuntamento di tre giorni fino adesso, che praticamente abbiamo un gatto insieme:
+          Sei stata la mia migliore amica, il mio conforto più grande, e tutto il mio cuore ❤️ Amo la vita con te.
+        </p>
+        <p>
+          Amo ridere con te fino a farci male alla pancia. Amo che possiamo parlare di tutto e di niente per ore. Sei proprio "codificata come gli Egizi credevano".
+          Con te mi sento al sicuro, visto, e più amato di quanto lo sia mai stato prima.
+        </p>
+        <p>
+          Non so cosa ho fatto per meritarti, ma ogni singolo giorno sono grato di poterti amare.
+        </p>
+        <div class="signature">Con tutto il mio amore</div>
       </div>
-      <p class="envelope-hint">(Tap to open)</p>
     </section>
 
-    <!-- Timeline Section -->
-    <section class="timeline-section">
+    <section>
       <h2>Our Story So Far</h2>
-      <div class="timeline-container">
-        <div class="timeline-image">
-          <img id="event-image" src="images/event1.jpg" alt="Event Image" />
+      <div class="timeline">
+        <div class="event">
+          <div class="event-marker"></div>
+          <div class="event-content">
+            <h3>Day 1–3</h3>
+            <p>Our "first date" turned into 72 hours of nonstop magic</p>
+          </div>
         </div>
-        <div class="timeline">
-          <div class="event active" data-img="images/event1.jpg">
-            <div class="event-marker"></div>
-            <div class="event-content">
-              <h3>Day 1–3</h3>
-              <p>Our "first date" turned into 72 hours of nonstop magic</p>
-            </div>
+        <div class="event">
+          <div class="event-marker"></div>
+          <div class="event-content">
+            <h3>Month 1</h3>
+            <p>Realizing I found my favorite human</p>
           </div>
-          <div class="event" data-img="images/event2.jpg">
-            <div class="event-marker"></div>
-            <div class="event-content">
-              <h3>Month 1</h3>
-              <p>Realizing I found my favorite human</p>
-            </div>
+        </div>
+        <div class="event">
+          <div class="event-marker"></div>
+          <div class="event-content">
+            <h3>Month 2</h3>
+            <p>Nonstop laughter, deep talks, inside jokes</p>
           </div>
-          <div class="event" data-img="images/event3.jpg">
-            <div class="event-marker"></div>
-            <div class="event-content">
-              <h3>Month 2</h3>
-              <p>Nonstop laughter, deep talks, inside jokes</p>
-            </div>
+        </div>
+        <div class="event">
+          <div class="event-marker"></div>
+          <div class="event-content">
+            <h3>Month 3</h3>
+            <p>Feeling even more at home in your arms</p>
           </div>
-          <div class="event" data-img="images/event4.jpg">
-            <div class="event-marker"></div>
-            <div class="event-content">
-              <h3>Month 3</h3>
-              <p>Feeling even more at home in your arms</p>
-            </div>
-          </div>
-          <div class="event" data-img="images/event5.jpg">
-            <div class="event-marker"></div>
-            <div class="event-content">
-              <h3>Month 4</h3>
-              <p>Safe, loved, and completely yours</p>
-            </div>
+        </div>
+        <div class="event">
+          <div class="event-marker"></div>
+          <div class="event-content">
+            <h3>Month 4</h3>
+            <p>Safe, loved, and completely yours</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Message Section -->
-    <section class="message-section">
-      <h2>Your Daily Love Message <span class="daily-indicator">Today</span></h2>
-      <div class="message-box">
-        <div id="love-message" class="love-message"></div>
-      </div>
-      <button id="message-btn" class="love-btn">Get Another Love Message</button>
+    <section>
+      <h2>Your Daily Love Message</h2>
+      <div id="love-message" class="love-message">Loading your special message...</div>
+      <p class="message-date">A new message appears each day</p>
     </section>
 
     <footer>
-      <p>Made with ❤️ for the most amazing person in my world</p>
+      <p>Made with <span class="heart-icon">❤️</span> for the most amazing person in my world</p>
     </footer>
   </div>
 
-  <div id="floating-hearts"></div>
-  <audio id="bg-music" src="audio/song.mp3" loop></audio>
-  
-  <script src="script.js"></script>
+  <script>
+    // Simple script for daily love message
+    document.addEventListener('DOMContentLoaded', function() {
+      const loveMessages = [
+        "You're the first thing I think about when I wake up and the last thing I think about before I fall asleep.",
+        "Every moment with you makes life more beautiful.",
+        "You make my heart smile in ways no one else can.",
+        "In your eyes, I've found my home.",
+        "Your love is the greatest gift I've ever received.",
+        "When I'm with you, I feel like the luckiest person alive.",
+        "You make ordinary moments feel extraordinary.",
+        "I never knew I could love someone the way I love you.",
+        "Your smile brightens even my darkest days.",
+        "Forever won't be long enough to spend with you.",
+        "Being with you feels like coming home.",
+        "Your love gives me strength I never knew I had.",
+        "You're the reason I believe in love.",
+        "I love you more than yesterday, but less than tomorrow.",
+        "Meeting you was fate, becoming your boyfriend was a choice, but falling in love with you was beyond my control.",
+        "You're my favorite notification.",
+        "I'd choose you in a hundred lifetimes, in a hundred worlds, in any version of reality.",
+        "Every second, every minute, every hour spent with you is time well spent.",
+        "You're the missing piece I never knew I needed.",
+        "You make my heart beat in ways I didn't know it could.",
+        "Loving you is as natural as breathing.",
+        "My favorite place in the world is next to you.",
+        "With you, even the smallest moments feel magical.",
+        "You're the best part of my day, every day.",
+        "I didn't know what it meant to truly smile until I met you.",
+        "You make my heart feel like it's dancing.",
+        "Being loved by you is like a dream I never want to wake up from.",
+        "My heart recognized you before my eyes did.",
+        "You're the rhythm to my heart's beat.",
+        "With you, I've found the love I've always dreamed of.",
+        "Your love is the greatest adventure I've ever been on."
+      ];
+      
+      // Get daily message based on date
+      function getDailyMessage() {
+        const today = new Date();
+        const dateString = `${today.getMonth() + 1}${today.getDate()}${today.getFullYear()}`;
+        const dateSum = dateString.split('').reduce((sum, digit) => sum + parseInt(digit, 10), 0);
+        const todayIndex = dateSum % loveMessages.length;
+        return loveMessages[todayIndex];
+      }
+      
+      // Display message
+      const loveMessage = document.getElementById('love-message');
+      loveMessage.textContent = getDailyMessage();
+    });
+  </script>
 </body>
 </html>
