@@ -1,228 +1,579 @@
-// Initialization when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-  initFloatingHearts();
-  initTimeline();
-  initQuiz();
-  initLoveMessages();
-  initMusic();
-  
-  // Add initial animation classes
-  document.querySelectorAll('.animate__animated').forEach(element => {
-    element.classList.add('animate__animated');
-  });
-});
+/* Base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-// Floating Hearts Background
-function initFloatingHearts() {
-  const heartsContainer = document.getElementById('hearts-container');
-  
-  // Create initial hearts
-  for (let i = 0; i < 20; i++) {
-    createHeart();
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f8cdda 0%, #f88ca4 100%);
+  color: #333;
+  min-height: 100vh;
+  position: relative;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-weight: 600;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #fff;
+  margin-bottom: 30px;
+}
+
+section {
+  margin-bottom: 60px;
+}
+
+section h2 {
+  color: #fff;
+  font-size: 1.8rem;
+  margin: 30px 0 20px;
+  position: relative;
+  display: inline-block;
+}
+
+section h2::after {
+  content: '';
+  display: block;
+  width: 70%;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: 5px auto 0;
+}
+
+/* Gallery Section */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.photo-card {
+  background: #fff;
+  padding: 15px 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  width: 220px;
+  transition: transform 0.3s ease;
+}
+
+.photo-card:hover {
+  transform: translateY(-10px);
+}
+
+.photo-container {
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.photo {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.photo-card:hover .photo {
+  transform: scale(1.1);
+}
+
+.photo-caption {
+  margin-top: 15px;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.3rem;
+  color: #e75480;
+}
+
+/* Envelope & Letter */
+.letter-section {
+  padding: 0 15px;
+}
+
+.envelope {
+  width: 300px;
+  height: 180px;
+  position: relative;
+  margin: 30px auto;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ffdee9 0%, #ffb0c4 100%);
+  border-radius: 10px;
+  transform-origin: top;
+  transition: transform 0.8s ease-in-out;
+  z-index: 2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.letter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+  overflow-y: auto;
+}
+
+.envelope.open .flap {
+  transform: rotateX(-180deg);
+}
+
+.envelope.open .letter {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.letter h3 {
+  color: #e75480;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+}
+
+.letter p {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  margin-bottom: 15px;
+}
+
+.letter-signature {
+  text-align: right;
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.4rem;
+  color: #e75480;
+  margin-top: 10px;
+}
+
+.envelope-hint {
+  color: #fff;
+  font-style: italic;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+/* Timeline Section */
+.timeline-container {
+  position: relative;
+  padding: 20px 0;
+}
+
+.timeline-image {
+  width: 100%;
+  height: 250px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.timeline-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+.timeline {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 20px;
+  width: 3px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.event {
+  position: relative;
+  margin-bottom: 30px;
+  padding-left: 45px;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.3s ease;
+}
+
+.event:hover {
+  transform: translateX(5px);
+}
+
+.event-marker {
+  position: absolute;
+  left: 10px;
+  top: 5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+  border: 3px solid #ff4f81;
+  z-index: 1;
+}
+
+.event.active .event-marker {
+  background-color: #ff4f81;
+}
+
+.event-content {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-content h3 {
+  color: #e75480;
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+}
+
+.event-content p {
+  font-size: 0.95rem;
+}
+
+/* Message Section */
+.love-btn {
+  background: #fff;
+  color: #ff4f81;
+  border: none;
+  padding: 12px 25px;
+  font-size: 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.love-btn:hover {
+  background: #ff4f81;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.love-message {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  color: white;
+  margin-top: 20px;
+  min-height: 60px;
+  padding: 10px 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+footer {
+  margin-top: 40px;
+  color: white;
+  font-size: 0.9rem;
+}
+
+/* Floating Hearts */
+#floating-hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floating-heart {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.7);
+  user-select: none;
+  animation: float 10s linear infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) scale(0.7);
+    opacity: 0;
   }
-  
-  // Create a new heart every 2 seconds
-  setInterval(createHeart, 2000);
-  
-  function createHeart() {
-    const heart = document.createElement('div');
-    heart.classList.add('floating-heart');
-    heart.innerHTML = '♥';
-    heart.style.left = `${Math.random() * 100}%`;
-    heart.style.opacity = Math.random() * 0.5 + 0.3;
-    heart.style.fontSize = `${Math.random() * 15 + 10}px`;
-    heart.style.animationDuration = `${Math.random() * 10 + 5}s`;
-    
-    heartsContainer.appendChild(heart);
-    
-    // Remove heart after animation completes
-    setTimeout(() => {
-      heart.remove();
-    }, 15000);
+  10% {
+    opacity: 0.7;
   }
-  
-  // Mouse trail hearts effect – disabled on mobile
-  if (!/Mobi|Android/i.test(navigator.userAgent)) {
-    document.addEventListener("mousemove", function(e) {
-      if (Math.random() > 0.9) { // Only show hearts occasionally for better performance
-        let heart = document.createElement("div");
-        heart.className = "heart";
-        heart.innerHTML = "♥";
-        heart.style.left = (e.pageX - 7.5) + "px";
-        heart.style.top = (e.pageY - 7.5) + "px";
-        heart.style.animation = "fadeOut 2s forwards";
-        heart.style.position = "absolute";
-        heart.style.color = "rgba(255, 79, 129, 0.7)";
-        heart.style.fontSize = `${Math.random() * 10 + 15}px`;
-        heart.style.pointerEvents = "none";
-        document.body.appendChild(heart);
-        
-        setTimeout(() => heart.remove(), 2000);
-      }
-    });
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-50px) scale(1.1);
+    opacity: 0;
   }
 }
 
-// Open envelope animation
-function openEnvelope() {
-  document.querySelector('.envelope').classList.add('open');
+/* Music Control */
+#music-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  color: #ff4f81;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
 }
 
-// Initialize music player
-function initMusic() {
-  const music = document.getElementById('bg-music');
-  const musicToggle = document.getElementById('music-toggle');
-  const musicLabel = document.querySelector('.music-label');
-  let isPlaying = false;
-  
-  musicToggle.addEventListener('click', function() {
-    if (isPlaying) {
-      music.pause();
-      musicLabel.textContent = 'Play Music';
-      musicToggle.classList.remove('playing');
-    } else {
-      music.play().catch(() => {
-        console.log('Audio playback was prevented. User interaction required.');
-      });
-      musicLabel.textContent = 'Pause Music';
-      musicToggle.classList.add('playing');
-    }
-    
-    isPlaying = !isPlaying;
-  });
-  
-  // Auto-play music on first interaction with the page
-  document.body.addEventListener('click', function musicHandler() {
-    if (!isPlaying) {
-      music.play().then(() => {
-        isPlaying = true;
-        musicLabel.textContent = 'Pause Music';
-        musicToggle.classList.add('playing');
-      }).catch(() => {
-        console.log('Audio playback was prevented. User interaction required.');
-      });
-    }
-    
-    // Remove this handler after first click
-    document.body.removeEventListener('click', musicHandler);
-  }, { once: true });
+#music-toggle:hover {
+  transform: scale(1.1);
 }
 
-// Initialize timeline functionality
-function initTimeline() {
-  const eventImage = document.getElementById("event-image");
-  const eventBlocks = document.querySelectorAll(".event");
-  
-  eventBlocks.forEach(event => {
-    event.addEventListener("click", () => {
-      // Remove active class from all events
-      eventBlocks.forEach(e => e.classList.remove('active'));
-      
-      // Add active class to clicked event
-      event.classList.add('active');
-      
-      // Change the image
-      const imgSrc = event.getAttribute("data-img");
-      if (imgSrc) {
-        eventImage.style.opacity = 0;
-        
-        setTimeout(() => {
-          eventImage.src = imgSrc;
-          eventImage.style.opacity = 1;
-        }, 300);
-      }
-    });
-  });
+#music-toggle::before {
+  content: '♪';
 }
 
-// Initialize quiz functionality
-function initQuiz() {
-  const optionButtons = document.querySelectorAll('.option-btn');
-  const quizQuestion = document.getElementById('quiz-question');
-  const quizResult = document.getElementById('quiz-result');
-  
-  optionButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      // Hide question and show result with animation
-      quizQuestion.classList.add('animate__animated', 'animate__fadeOut');
-      
-      setTimeout(() => {
-        quizQuestion.classList.add('hidden');
-        quizResult.classList.remove('hidden');
-        quizResult.classList.add('animate__animated', 'animate__fadeIn');
-        
-        // Create heart shower animation
-        createHeartShower();
-      }, 500);
-    });
-  });
-  
-  function createHeartShower() {
-    const hearts = 50;
-    const container = document.querySelector('.quiz-container');
-    
-    for (let i = 0; i < hearts; i++) {
-      const heart = document.createElement('div');
-      heart.innerHTML = '♥';
-      heart.style.position = 'absolute';
-      heart.style.left = Math.random() * 100 + '%';
-      heart.style.top = '0';
-      heart.style.fontSize = Math.random() * 20 + 10 + 'px';
-      heart.style.color = 'rgba(255, 79, 129, ' + (Math.random() * 0.7 + 0.3) + ')';
-      heart.style.animation = 'fall ' + (Math.random() * 5 + 3) + 's linear forwards';
-      container.appendChild(heart);
-      
-      setTimeout(() => heart.remove(), 8000);
-    }
+#music-toggle.playing::before {
+  content: '❚❚';
+  font-size: 1rem;
+}
+
+/* Heart Animation */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
   }
 }
 
-// Initialize love message generator
-function initLoveMessages() {
-  const messages = [
-    "Every day with you is a new adventure I cherish.",
-    "Your smile is my favorite view in the whole world.",
-    "I fall in love with you a little more each day.",
-    "You make my heart skip a beat, even after all this time.",
-    "Together with you is my favorite place to be.",
-    "You're the missing piece I never knew I needed.",
-    "Your love feels like coming home after a long day.",
-    "With you, ordinary moments become extraordinary memories.",
-    "I love all of your little quirks that make you uniquely you.",
-    "You're not just my lover, but my best friend too."
-  ];
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
   
-  const messageBtn = document.getElementById('message-btn');
-  const loveMessage = document.getElementById('love-message');
+  .gallery {
+    flex-direction: column;
+    align-items: center;
+  }
   
-  messageBtn.addEventListener('click', () => {
-    // Hide current message with animation
-    loveMessage.classList.add('animate__animated', 'animate__fadeOut');
-    
-    setTimeout(() => {
-      // Select random message
-      const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-      
-      // Update and show with new animation
-      loveMessage.textContent = randomMessage;
-      loveMessage.classList.remove('animate__fadeOut');
-      loveMessage.classList.add('animate__fadeIn');
-    }, 500);
-  });
+  .photo-card {
+    width: 250px;
+  }
+  
+  .envelope {
+    width: 280px;
+    height: 170px;
+  }
+  
+  .letter h3 {
+    font-size: 1.4rem;
+  }
+  
+  .letter p {
+    font-size: 1.1rem;
+  }
 }
 
-// Add style for falling hearts animation
-const styleElement = document.createElement('style');
-styleElement.textContent = `
-  @keyframes fadeOut {
-    0% { opacity: 1; transform: translateY(0) scale(1); }
-    100% { opacity: 0; transform: translateY(-20px) scale(1.5); }
+@media (max-width: 480px) {
+  .container {
+    padding: 20px 15px;
   }
   
-  @keyframes fall {
-    0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
-    10% { opacity: 1; }
-    100% { transform: translateY(400px) rotate(360deg); opacity: 0; }
+  .title {
+    font-size: 1.8rem;
   }
-`;
-document.head.appendChild(styleElement);
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  section h2 {
+    font-size: 1.5rem;
+  }
+  
+  .photo-card {
+    width: 220px;
+  }
+  
+  .envelope {
+    width: 260px;
+    height: 160px;
+  }
+  
+  .letter h3 {
+    font-size: 1.3rem;
+  }
+  
+  .letter p {
+    font-size: 1rem;
+  }
+  
+  .timeline-image {
+    height: 200px;
+  }
+  
+  .love-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .love-message {
+    font-size: 1.3rem;
+  }
+}
+/* Add these styles to your style.css file */
+
+/* Message section styling */
+.message-section {
+  padding: 0 15px;
+}
+
+.daily-indicator {
+  display: inline-block;
+  padding: 4px 8px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  font-size: 0.7rem;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.message-box {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  position: relative;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.love-message {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  color: white;
+  min-height: 80px;
+  padding: 10px;
+  position: relative;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.5s ease;
+}
+
+.love-message::before,
+.love-message::after {
+  content: '"';
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.5);
+  position: absolute;
+}
+
+.love-message::before {
+  top: -10px;
+  left: -5px;
+}
+
+.love-message::after {
+  bottom: -25px;
+  right: -5px;
+}
+
+.message-note {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 10px;
+  font-style: italic;
+}
+
+.love-btn {
+  margin-top: 10px;
+}
+
+/* Animation for the daily message */
+@keyframes softPulse {
+  0% {
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  }
+}
+
+.message-box {
+  animation: softPulse 3s infinite;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .love-message {
+    font-size: 1.3rem;
+  }
+  
+  .message-box {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .love-message {
+    font-size: 1.2rem;
+    min-height: 70px;
+  }
+  
+  .message-box {
+    padding: 12px;
+  }
+  
+  .daily-indicator {
+    font-size: 0.6rem;
+    padding: 3px 6px;
+  }
+}
