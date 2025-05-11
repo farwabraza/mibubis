@@ -5,113 +5,206 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Happy 4 Months, Love!</title>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <style>
+    /* Inline critical CSS to ensure it loads */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f8cdda 0%, #f88ca4 100%);
+      color: #333;
+      overflow-x: hidden;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    
+    h1 {
+      color: #fff;
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    p {
+      line-height: 1.6;
+    }
+    
+    .subtitle {
+      color: #fff;
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+    
+    section {
+      margin-bottom: 50px;
+    }
+    
+    h2 {
+      color: #fff;
+      margin: 30px 0 20px;
+      position: relative;
+      display: inline-block;
+      font-size: 1.8rem;
+    }
+    
+    h2::after {
+      content: '';
+      display: block;
+      width: 70%;
+      height: 3px;
+      background-color: rgba(255,255,255,0.5);
+      margin: 5px auto 0;
+    }
+    
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #f8cdda;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      transition: opacity 0.5s ease-in-out;
+    }
+    
+    .heart-loader {
+      font-size: 50px;
+      color: #fff;
+      animation: heartbeat 1.2s infinite;
+    }
+    
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    /* Animation for love message */
+    .love-message {
+      transition: opacity 0.5s ease;
+    }
+
+    /* Animation for the daily message indicator */
+    .daily-indicator {
+      display: inline-block;
+      padding: 4px 8px;
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      font-size: 0.7rem;
+      margin-left: 10px;
+      vertical-align: middle;
+    }
+  </style>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Floating hearts background -->
-  <div id="hearts-container"></div>
-  
-  <!-- Music controls -->
-  <div class="music-control">
-    <button id="music-toggle">
-      <span class="music-icon">♪</span>
-    </button>
-    <span class="music-label">Play Music</span>
+  <!-- Loading overlay -->
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="heart-loader">❤️</div>
   </div>
 
   <div class="container">
-    <header class="animate__animated animate__fadeIn">
-      <h1 class="main-title">Happy 4 Months, MiBubis!</h1>
+    <header>
+      <h1 class="title">Happy 4 Months, MiBubis!</h1>
       <p class="subtitle">Every moment with you feels like a little piece of forever.</p>
     </header>
 
-    <!-- Polaroid Gallery -->
-    <section class="polaroid-gallery animate__animated animate__fadeIn animate__delay-1s">
-      <div class="polaroid" style="transform: rotate(-5deg);">
-        <div class="polaroid-content">
-          <img src="images/photo1.jpg" alt="Us together" />
-          <p>My favorite smile</p>
-        </div>
-      </div>
-      <div class="polaroid" style="transform: rotate(3deg);">
-        <div class="polaroid-content">
-          <img src="images/photo2.jpg" alt="Laughing" />
-          <p>Laughing with you</p>
-        </div>
-      </div>
-      <div class="polaroid" style="transform: rotate(-2deg);">
-        <div class="polaroid-content">
-          <img src="images/photo3.jpg" alt="A memory" />
-          <p>Our adventure</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Interactive Love Letter -->
-    <section class="love-letter-section animate__animated animate__fadeIn animate__delay-2s">
-      <h2>A Letter For You</h2>
-      <div class="envelope-container">
-        <div class="envelope" onclick="openEnvelope()">
-          <div class="flap"></div>
-          <div class="letter">
-            <h2>Alla Mia Persona Preferita</h2>
-            <p>
-              Vorrei ringraziare non solo Dio, ma anche Gay Jesus per averti fatto fare swipe su di me. Dal nostro primo appuntamento di tre giorni fino adesso, che praticamente abbiamo un gatto insieme:
-              Sei stata la mia migliore amica, il mio conforto più grande, e tutto il mio cuore <span class="heart-icon">♥</span> Amo la vita con te.
-              <br><br>
-              Amo ridere con te fino a farci male alla pancia. Amo che possiamo parlare di tutto e di niente per ore. Sei proprio "codificata come gli Egizi credevano".
-              Con te mi sento al sicuro, visto, e più amato di quanto lo sia mai stato prima.
-              <br><br>
-              Non so cosa ho fatto per meritarti, ma ogni singolo giorno sono grato di poterti amare.
-            </p>
-            <div class="signature">Con tutto il mio amore</div>
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+      <h2>Our Moments</h2>
+      <div class="gallery">
+        <div class="photo-card">
+          <div class="photo-container">
+            <img src="images/photo1.jpg" alt="Us together" class="photo" />
           </div>
+          <p class="photo-caption">My favorite smile</p>
         </div>
-        <p class="envelope-hint">Click to open</p>
+        <div class="photo-card">
+          <div class="photo-container">
+            <img src="images/photo2.jpg" alt="Laughing" class="photo" />
+          </div>
+          <p class="photo-caption">Laughing with you</p>
+        </div>
+        <div class="photo-card">
+          <div class="photo-container">
+            <img src="images/photo3.jpg" alt="A memory" class="photo" />
+          </div>
+          <p class="photo-caption">Our adventure</p>
+        </div>
       </div>
     </section>
 
-    <!-- Interactive Timeline -->
-    <section class="timeline-section animate__animated animate__fadeIn animate__delay-3s">
+    <!-- Love Letter Section -->
+    <section class="letter-section">
+      <h2>My Love Letter</h2>
+      <div class="envelope" id="envelope">
+        <div class="flap"></div>
+        <div class="letter">
+          <h3>Alla Mia Persona Preferita</h3>
+          <p>
+            Vorrei ringraziare non solo Dio, ma anche Gay Jesus per averti fatto fare swipe su di me. Dal nostro primo appuntamento di tre giorni fino adesso, che praticamente abbiamo un gatto insieme:
+            Sei stata la mia migliore amica, il mio conforto più grande, e tutto il mio cuore ❤️ Amo la vita con te.
+          </p>
+          <p>
+            Amo ridere con te fino a farci male alla pancia. Amo che possiamo parlare di tutto e di niente per ore. Sei proprio "codificata come gli Egizi credevano".
+            Con te mi sento al sicuro, visto, e più amato di quanto lo sia mai stato prima.
+          </p>
+          <p>
+            Non so cosa ho fatto per meritarti, ma ogni singolo giorno sono grato di poterti amare.
+          </p>
+          <div class="letter-signature">Con tutto il mio amore</div>
+        </div>
+      </div>
+      <p class="envelope-hint">(Tap to open)</p>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
       <h2>Our Story So Far</h2>
       <div class="timeline-container">
-        <div class="timeline-image-container">
-          <img id="event-image" src="images/event1.jpg" alt="Event Image" class="timeline-img"/>
+        <div class="timeline-image">
+          <img id="event-image" src="images/event1.jpg" alt="Event Image" />
         </div>
-        <div class="timeline-events">
+        <div class="timeline">
           <div class="event active" data-img="images/event1.jpg">
-            <div class="event-date">Day 1–3</div>
+            <div class="event-marker"></div>
             <div class="event-content">
-              <h3>Our Beginning</h3>
+              <h3>Day 1–3</h3>
               <p>Our "first date" turned into 72 hours of nonstop magic</p>
             </div>
           </div>
           <div class="event" data-img="images/event2.jpg">
-            <div class="event-date">Month 1</div>
+            <div class="event-marker"></div>
             <div class="event-content">
-              <h3>My Favorite Person</h3>
+              <h3>Month 1</h3>
               <p>Realizing I found my favorite human</p>
             </div>
           </div>
           <div class="event" data-img="images/event3.jpg">
-            <div class="event-date">Month 2</div>
+            <div class="event-marker"></div>
             <div class="event-content">
-              <h3>Deepening Connection</h3>
+              <h3>Month 2</h3>
               <p>Nonstop laughter, deep talks, inside jokes</p>
             </div>
           </div>
           <div class="event" data-img="images/event4.jpg">
-            <div class="event-date">Month 3</div>
+            <div class="event-marker"></div>
             <div class="event-content">
-              <h3>Growing Closer</h3>
+              <h3>Month 3</h3>
               <p>Feeling even more at home in your arms</p>
             </div>
           </div>
           <div class="event" data-img="images/event5.jpg">
-            <div class="event-date">Month 4</div>
+            <div class="event-marker"></div>
             <div class="event-content">
-              <h3>Today & Beyond</h3>
+              <h3>Month 4</h3>
               <p>Safe, loved, and completely yours</p>
             </div>
           </div>
@@ -119,64 +212,23 @@
       </div>
     </section>
 
-    <!-- Interactive Love Quiz -->
-    <section class="quiz-section animate__animated animate__fadeIn animate__delay-4s">
-      <h2>How Well Do You Know My Love?</h2>
-      <div class="quiz-container">
-        <div id="quiz-question" class="quiz-question">
-          <p class="question">What was the first thing I noticed about you?</p>
-          <div class="options">
-            <button class="option-btn">Your smile</button>
-            <button class="option-btn">Your eyes</button>
-            <button class="option-btn">Your laugh</button>
-          </div>
-        </div>
-        <div id="quiz-result" class="quiz-result hidden">
-          <div class="hearts-explosion">
-            <div class="heart">♥</div>
-            <div class="heart">♥</div>
-            <div class="heart">♥</div>
-          </div>
-          <p>Every answer is right because everything about you is perfect!</p>
-        </div>
+    <!-- Message Section -->
+    <section class="message-section">
+      <h2>Your Daily Love Message <span class="daily-indicator">Today</span></h2>
+      <div class="message-box">
+        <div id="love-message" class="love-message"></div>
       </div>
+      <button id="message-btn" class="love-btn">Get Another Love Message</button>
     </section>
 
-    <!-- Future Dreams Section -->
-    <section class="dreams-section animate__animated animate__fadeIn animate__delay-5s">
-      <h2>Our Future Adventures</h2>
-      <div class="dreams-container">
-        <div class="dream-card">
-          <div class="dream-icon">✈️</div>
-          <h3>Travel Together</h3>
-          <p>Exploring new places, creating memories in every corner of the world</p>
-        </div>
-        <div class="dream-card">
-          <div class="dream-icon">🏡</div>
-          <h3>Build a Home</h3>
-          <p>A place filled with laughter, love, and maybe a few more cats</p>
-        </div>
-        <div class="dream-card">
-          <div class="dream-icon">💫</div>
-          <h3>Grow Together</h3>
-          <p>Supporting each other's dreams and celebrating every achievement</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Love Message Generator -->
-    <section class="message-generator animate__animated animate__fadeIn animate__delay-6s">
-      <h2>Your Daily Dose of Love</h2>
-      <button id="message-btn" class="love-btn">Get Your Love Message</button>
-      <div id="love-message" class="love-message"></div>
-    </section>
-
-    <footer class="animate__animated animate__fadeIn animate__delay-7s">
-      <p class="footer-text">Made with <span class="heart-icon">♥</span> for the most amazing person in my world</p>
+    <footer>
+      <p>Made with ❤️ for the most amazing person in my world</p>
     </footer>
   </div>
 
+  <div id="floating-hearts"></div>
   <audio id="bg-music" src="audio/song.mp3" loop></audio>
+  
   <script src="script.js"></script>
 </body>
 </html>
